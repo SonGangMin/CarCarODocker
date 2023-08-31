@@ -1,0 +1,167 @@
+<%- include('../include/managerhead.ejs') %>
+
+<style>
+  .board_container {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    padding: 1% 7% 5% 7%;
+    /* border: 1px solid red; */
+  }
+  .main_name {
+    font-size: 30px;
+    margin: 10px;
+    color: yellowgreen;
+    font-weight: bold;
+  }
+  .greenhr {
+    background: yellowgreen;
+    height: 3px;
+    border: 0;
+  }
+  .board_container2 {
+    padding: 3% 7% 2% 7%;
+    /* border: 1px solid black; */
+  }
+  .board_title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5%;
+  }
+  .input_title {
+    width: 100%;
+    height: 30px;
+    caret-color: black; /* 커서 색상 설정 */
+    caret-width: 2px; /* 커서 굵기 설정 */
+    padding: 5px; /* 텍스트 영역의 패딩 설정 */
+    border: 1px solid #ccc;
+  }
+  .greenhr2 {
+    background: lightgreen;
+    height: 1px;
+    border: 0;
+    margin: 1% 0% 3% 0%;
+  }
+  .input_content {
+    width: 100%;
+    font-size: 15px;
+    caret-color: black; /* 커서 색상 설정 */
+    caret-width: 2px; /* 커서 굵기 설정 */
+    padding: 5px; /* 텍스트 영역의 패딩 설정 */
+    border: 1px solid #ccc;
+  }
+  .buttons {
+    display: flex;
+    justify-content: end;
+  }
+  .buttons > button {
+    margin-left: 1%;
+    width: 10%;
+    height: 25px;
+    background: skyblue;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+<div class="board_container">
+  <div
+    class="main_name"
+    onclick="location.href='/manager/managerboard/'"
+    style="cursor: pointer"
+  >
+    게시판관리
+  </div>
+  <hr class="greenhr" />
+  <div class="board_container2">
+    <div class="board_title">게시글 수정하기</div>
+    <form
+      method="post"
+      action="/manager/managerboard/edit/<%= post.postId %>"
+      onsubmit="return validateForm()"
+    >
+      <input
+        type="text"
+        id="title"
+        name="title"
+        value="<%= post.title %>"
+        class="input_title"
+        required
+      />
+      <hr class="greenhr2" />
+      <textarea
+        name="content"
+        id="myTextarea"
+        cols="100"
+        rows="30"
+        class="input_content"
+      >
+<%= post.content %></textarea
+      >
+      <hr class="greenhr2" />
+      <div class="buttons">
+        <button
+          type="button"
+          id="back"
+          onclick="location.href='/manager/managerboard/content/<%= post.postId %>'"
+        >
+          뒤로
+        </button>
+        <button type="submit">수정</button>
+      </div>
+    </form>
+  </div>
+  <hr class="greenhr" />
+</div>
+
+<script>
+  // tap키인식
+  var textarea = document.getElementById("myTextarea");
+  textarea.addEventListener("keydown", function (e) {
+    if (e.keyCode === 9) {
+      // Tab key
+      e.preventDefault();
+      var start = this.selectionStart;
+      var end = this.selectionEnd;
+      this.value =
+        this.value.substring(0, start) + "\t" + this.value.substring(end);
+      this.selectionStart = this.selectionEnd = start + 1;
+    }
+  });
+  // 유효성검사
+  function validateForm() {
+    var title = document.forms[0].title.value;
+    var content = document.getElementById("myTextarea").value;
+
+    if (title === "" || content === "") {
+      alert("제목과 내용을 모두 입력해주세요.");
+      return false;
+    }
+  }
+</script>
+<!-- 
+<h1>게시글 수정하기</h1>
+
+<form action="/manager/managerboard/edit/<%= post.postId %>" method="post">
+  <input type="hidden" name="_method" value="PUT" />
+  <div>
+    <label for="title">제목</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      value="<%= post.title %>"
+      required
+    />
+  </div>
+  <div>
+    <label for="content">내용</label>
+    <textarea id="content" name="content" rows="10" required>
+<%= post.content %></textarea
+    >
+  </div>
+  <button type="submit">수정하기</button>
+</form>
+
+<button onclick="location.href='/manager/managerboard/'">돌아가기</button> -->

@@ -1,0 +1,170 @@
+<%- include('../include/managerhead.ejs') %>
+<link rel="stylesheet" href="/stylesheets/car.css">
+<div class="container5">
+    <div class="contents5">
+        <div class="titletext"><i class="fa-solid fa-car-side fa-fade"></i>차량관리</div>
+        <hr class="hrtitle">
+        <h2 class="title">판매중인차량</h2>  
+        <h3 class="counting">총 <span><%= totalCount %></span>개</h3>
+        <!-- <form action="/car/hashtag">
+            <input type="text" name="hashtag">
+            <button class="btn">검색</button>
+        </form> -->
+        <select name="sort" onchange="sortCars(this.value)">
+          <option value="" selected>정렬</option>
+          <option value="createdAt_desc">최근 등록순</option>
+          <option value="likes_desc">추천순</option>
+          <option value="year_desc">최근 연식순</option>
+          <option value="year_asc">오래된 연식순</option>
+          <option value="mile_asc">적은 주행거리순</option>
+          <option value="mile_desc">많은 주행거리순</option>
+          <option value="price_asc">낮은 가격순</option>
+          <option value="price_desc">높은 가격순</option>
+          <option value="recommend_desc">관리자추천순</option>
+        </select>
+
+        <ul class="viewImg">
+          <% Cars.forEach(function(carList) { %>
+            <li <% if (carList.recommends === 1) { %>class="recommended"<% } %>>
+              <% if (carList.picture.length > 0) { %>
+                <img src="<%= carList.picture[0].url %>" alt="" class="thumbnail" onclick="location.href='/manager/managerCar/detail/<%= carList.carNum %>'">
+              <% } %>
+              <div class="middle_li" onclick="location.href='/manager/managerCar/detail/<%= carList.carNum %>'">
+                <p><%= carList.brand %> <%= carList.model %></p>
+                <div class="option">
+                  <span style="font-weight: bold;">판매자: <%= carList.user_id %></span><br>
+                  <span><%= carList.year %></span>
+                  <span><%= carList.mile %>km</span>
+                  <span><%= carList.fuel %></span>
+                </div>
+                <div><i class="fa-solid fa-heart" style="color: red;"> <%= carList.likes_count %></i></div>
+              </div>
+              <div class="buttonBox">
+                <button class="Car-btn" onclick="confirmEdit('<%= carList.carNum %>')">수정</button>
+                <form action="/car/delete/<%= carList.carNum %>" method="POST" onsubmit="return confirm('정말로 삭제하시겠습니까?')">
+                  <input class="Car-btn" type="submit" value="삭제" />
+                </form>
+                <form action="/manager/managerCar/recommend/<%= carList.carNum %>" method="post" onsubmit="return confirmRecommendAction(event, '<%= carList.carNum %>', <%= carList.recommends %>)">
+                  <% if(carList.recommends === 0) { %>
+                    <button class="Car-btn" type="submit">추천차량등록</button>
+                  <% } else if(carList.recommends === 1) { %>
+                    <button class="Car-btn" type="submit">추천차량취소</button>
+                  <% } %>
+                </form>  
+              </div>
+            </li>
+          <% }); %>
+        </ul>
+        <%- include('../include/pagination.ejs') %>
+    </div>
+</div>
+</body>
+<script>
+    function onPageClick(event, page) {
+      const queryParams = new URLSearchParams(window.location.search);
+      queryParams.set('page', page); // 현재 페이지 설정
+    
+      const queryString = queryParams.toString();
+      const searchUrl = `/manager/managerCar?${queryString}`;
+    
+      location.href = searchUrl;
+    }
+  window.onload = () => {
+    setQueryStringParams();
+    setSelectedSort();
+    }
+
+  function confirmRecommendAction(event, carNum, recommends) {
+    var message = recommends === 0 ? '추천차량으로 등록하시겠습니까?' : '추천차량 등록을 취소하시겠습니까?';
+    if (!confirm(message)) {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  function confirmEdit(carNum) {
+    if (confirm('정말로 수정하시겠습니까?')) {
+      location.href = '/car/caredit/' + carNum;
+    }
+  }
+
+  function sortCars(sort) {
+    const url = `/manager/managerCar${sort ? `?sort=${sort}` : ""}`;
+    window.location.href = url;
+    }
+  function setSelectedSort() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sortValue = urlParams.get('sort');
+    if (sortValue) {
+      document.querySelector('select[name="sort"]').value = sortValue;
+    }
+  }
+
+  function setQueryStringParams(){
+    if(!location.search){
+      return false;
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchfrom = urlParams.get('from')
+    const searchbrand = urlParams.get('brand')
+    const searchmodel = urlParams.get('model')
+    const searchlowprice = urlParams.get('lowprice')
+    const searchhighprice = urlParams.get('highprice')
+    const searchtrans = urlParams.get('trans')
+    const searchfuel = urlParams.get('fuel')
+    const searchstartyear = urlParams.get('startyear')
+    const searchendyear = urlParams.get('endyear')
+    const searchshortmile = urlParams.get('shortmile')
+    const searchlongmile = urlParams.get('longmile')
+
+
+    if(searchfrom){
+      document.querySelector('#from').value=searchfrom;
+    }
+    if(searchbrand){
+      document.querySelector('#brand').value=searchbrand;
+    }
+    if(searchmodel){
+      document.querySelector('input[name="model"]').value = searchmodel;
+    }
+    if(searchlowprice){
+      document.querySelector('#lowprice').value=searchlowprice;
+    }
+    if(searchhighprice){
+      document.querySelector('#highprice').value=searchhighprice;
+    }
+    if(searchtrans){
+      document.querySelector('#trans').value=searchtrans;
+    }
+    if(searchfuel){
+      document.querySelector('#fuel').value=searchfuel;
+    }
+    if(searchstartyear){
+      document.querySelector('#startyear').value=searchstartyear;
+    }
+    if(searchendyear){
+      document.querySelector('#endyear').value=searchendyear;
+    }
+    if(searchshortmile){
+      document.querySelector('#shortmile').value=searchshortmile;
+    }
+    if(searchlongmile){
+      document.querySelector('#longmile').value=searchlongmile;
+    }
+  }
+  const arrayForm = document.getElementById('arrayForm');
+  const array = document.getElementById('array');
+  array.addEventListener('change', () => {
+    arrayForm.submit();
+  });
+
+  if (window.location.search.includes('array=%EB%93%B1%EB%A1%9D%EC%88%9C')) {
+    document.querySelector('#array option[value="등록순"]').selected = true;
+  } else {
+    document.querySelector('#array option[value="최신순"]').selected = true;
+  }
+  console.log(window.location.search);
+  console.log(document.querySelector('#array option[selected]').value); 
+</script>
+</html>
+

@@ -1,0 +1,438 @@
+<%- include('../include/managerhead.ejs') %>
+<style>
+    p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    font-size: 18px;
+    color: #676767;
+  }
+  .frame {
+    width: 90%;
+    margin: 30px auto;
+    text-align: center;
+  }
+  /* button {
+    margin: 20px;
+  } */
+  .custom-btn {
+    width: 130px;
+    height: 40px;
+    color: black;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+  }
+
+  .btn-1 {
+    background: lightgray;
+    background: linear-gradient(0deg, lightgray 0%, gray 100%);
+    border: none;
+  }
+  .btn-1:hover {
+    background: gray;
+  background: linear-gradient(0deg, gray 0%, gray 100%);
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  section.notice {
+    padding: 2px 0;
+  }
+  .notice .page-title {
+    margin-bottom: 0px; /* 간격을 조절하려면 마진을 조정합니다. */
+  }
+
+  .page-title {
+    margin-bottom: 30px;
+  }
+  .page-title h3 {
+    font-size: 28px;
+    color: #333333;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  #board-search .search-window {
+    padding: 15px 0;
+    background-color: #f9f7f9;
+  }
+  #board-search .search-window .search-wrap {
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 564px;
+  }
+  #board-search .search-window .search-wrap input {
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    padding: 7px 14px;
+    border: 1px solid #ccc;
+  }
+  #board-search .search-window .search-wrap input:focus {
+    border-color: #333;
+    outline: 0;
+    border-width: 1px;
+  }
+  #board-search .search-window .search-wrap .btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 108px;
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .board-table {
+    font-size: 13px;
+    width: 100%;
+    border-top: 1px solid #d0d0d0;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .board-table a {
+    color: #333;
+    display: inline-block;
+    line-height: 1.4;
+    word-break: break-all;
+    vertical-align: middle;
+  }
+  .board-table a:hover {
+    text-decoration: underline;
+  }
+  .board-table th {
+    text-align: center;
+  }
+
+  .board-table .th-num {
+    width: 100px;
+    text-align: center;
+  }
+
+  .board-table .th-date {
+    width: 200px;
+  }
+
+  .board-table th,
+  .board-table td {
+    padding: 0px 0;
+  }
+
+  .board-table tbody td {
+    border-top: 1px solid black;
+    text-align: center;
+  }
+
+  .board-table tbody th {
+    padding-left: 28px;
+    padding-right: 14px;
+    border-top: 1px solid black;
+    text-align: left;
+  }
+
+  .board-table tbody th p {
+    display: none;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0 30px;
+    font-size: 15px;
+    font-weight: 400;
+    background: black;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .btn-dark {
+    background: #555;
+    color: #fff;
+  }
+
+  .btn-dark:hover,
+  .btn-dark:focus {
+    background: #373737;
+    border-color: #373737;
+    color: #fff;
+  }
+
+  .btn-dark {
+    background: #555;
+    color: #fff;
+  }
+
+  .btn-dark:hover,
+  .btn-dark:focus {
+    background: #373737;
+    border-color: #373737;
+    color: #fff;
+  }
+  * {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .container2 {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .blind {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    width: 1px;
+    height: 1px;
+  }
+  .search-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-wrap select {
+    margin-right: 10px;
+    height: 40px; /* input 요소와 동일한 높이로 설정 */
+  }
+
+  .search-wrap input {
+    height: 40px;
+  }
+  .th-num {
+    width: 5%;
+  }
+
+  .th-title {
+    width: 40%;
+  }
+
+  .th-user {
+    width: 15%;
+  }
+
+  .th-date {
+    width: 20%;
+  }
+  .th-view {
+    width: 5%;
+  }
+  .th-manage {
+    width: 15%;
+  }
+  tr:hover {
+    background-color: white;
+    /* color: white; */
+  }
+  .notice-row {
+    background-color: darkgray; /* 회색 배경색 */
+  }
+  .text_right {
+    display: flex;
+    justify-content:flex-end;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  .center1 {
+    display: flex;
+    justify-content: center;
+  }
+  .manage {
+    display: flex;
+    margin: 10px;
+    justify-content: space-around;
+  }
+  .top_tr{
+    background-color: white;
+  }
+  .notice_num {
+    color: red;
+    font-weight: bold;
+  }
+
+</style>
+
+<section class="notice">
+  <div class="page-title">
+    <div>
+      <h3>검색 결과</h3>
+    </div>
+  </div>
+
+  <div id="board-list">
+    <div class="container2">
+      <table class="board-table">
+        <thead>
+          <tr class="top_tr">
+            <th scope="col" class="th-num">번호</th>
+            <th scope="col" class="th-title">제목</th>
+            <th scope="col" class="th-user">작성자</th>
+            <th scope="col" class="th-date">등록일</th>
+            <th scope="col" class="th-view">조회수</th>
+            <th scope="col" class="th-manage">관리</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.forEach(function(result) { %>
+          <tr<% if (result.grade === 2) { %> class="notice-row"<% } %>>
+            <td>
+              <% if (result.grade === 2) { %> <span class="notice_num">공지</span> <% } else { %> <%= result.postId
+              %> <% } %>
+            </td>
+            <td>
+              <a href="/manager/managerboard/content/<%= result.postId %>">
+                <% if (result.grade === 2) { %>
+                <span
+                  style="
+                    font-weight: bold;
+                  "
+                  ><%= result.title %> [<%= result.count %>]</span
+                >
+                <% } else { %> <%= result.title %> [<%= result.count %>] <% } %>
+              </a>
+            </td>
+            <td><%= result.user.name %>(<%= result.user_id %>)</td>
+            <td>
+              <%= result.createdAt.getFullYear() %>년 <%=
+              (result.createdAt.getMonth() + 1) %>월 <%= result.createdAt.getDate()
+              %>일 (<%= ["일", "월", "화", "수", "목", "금",
+              "토"][result.createdAt.getDay()] %>) <%= result.createdAt.getHours()
+              %>시 <%= result.createdAt.getMinutes() %>분
+            </td>
+            <td>
+              <%= result.views %>
+            </td>
+            <td>
+              <div class="manage">
+                <button onclick="confirmEdit('<%= result.user.name %>', '<%= result.postId %>')">수정</button>
+              <form
+                action="/manager/managerboard/delete/<%= result.postId %>"
+                method="POST"
+                onsubmit="return confirm('<%= result.user.name %> 님의 글을 정말로 삭제하시겠습니까?')"
+              >
+                <input type="submit" value="삭제" />
+              </form>
+              <% if (result.grade === 2) { %>
+                <form
+                action="/manager/managerboard/editgradedown/<%= result.postId %>"
+                method="POST"
+                onsubmit="return confirm('<%= result.user.name %> 님의 공지글을 정말로 일반게시글로 내리시겠습니까?')"
+              >
+                <input type="submit" value="공지내리기" />
+              </form>
+              <% } else { %>
+                <form
+                action="/manager/managerboard/editgradeup/<%= result.postId %>"
+                method="POST"
+                onsubmit="return confirm('<%= result.user.name %> 님의 게시글을 정말로 공지글로 등록하시겠습니까?')"
+              >
+                <input type="submit" value="공지로등록" />
+              </form>
+              <% } %>
+              </div>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="board-search">
+    <div class="container2">
+      <div class="search-window">
+        <form action="/manager/managerboard/search/" method="get">
+          <div class="search-wrap">
+            <label for="search" class="blind">검색어를 입력하세요.</label>
+            <select name="searchType" class="searchType">
+              <option value="title">제목</option>
+              <option value="content">내용</option>
+              <option value="title_content">제목+내용</option>
+              <option value="id">작성자</option>
+            </select>
+            <input
+              id="search"
+              type="text"
+              name="result"
+              placeholder="검색어를 입력하세요."
+            />
+            <button type="submit" class="btn btn/-dark">검색</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script>
+  window.onload = () => {
+    setQueryStringParams();
+    }
+  function onPageClick(event, page) {
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set("page", page); // 현재 페이지 설정
+
+    const queryString = queryParams.toString();
+    const searchUrl = `/manager/managerboard/search/?${queryString}`;
+
+    location.href = searchUrl;
+  }
+  function confirmEdit(userName, postId) {
+    if (confirm(userName + ' 님의 글을 수정하시겠습니까?')) {
+      window.location.href = '/manager/managerboard/edit/' + postId + '/';
+    }
+  }
+  function setQueryStringParams(){
+      if(!location.search){
+        return false;
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchsearchType = urlParams.get('searchType')
+      const searchresult = urlParams.get('result')
+      console.log('dddddddddddddddddddddddddddddddddddddd',searchresult);
+      if(searchsearchType){
+        document.querySelector('.searchType').value=searchsearchType;
+      }
+      if(searchresult){
+        document.querySelector('input[name="result"]').value=searchresult;
+      }
+    }
+</script>
+</section>
+<%- include('../include/pagination.ejs') %>

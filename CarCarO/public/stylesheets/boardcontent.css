@@ -1,0 +1,280 @@
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  /* margin-left: 80%; */
+  /* border: 1px solid black; */
+}
+.board_container2 {
+  padding: 3% 7% 2% 7%;
+
+  /* display: flex; */
+  /* border: 1px solid black; */
+}
+.greenhr {
+  margin: 1% 0% 0% 0;
+  height: 4px;
+  border: 0;
+  background: #3a1d1d;
+}
+.greenhr2 {
+  background: #3a1d1d;
+  height: 1px;
+  border: 0;
+  margin: 1% 0% 3% 0%;
+}
+.greenhr3 {
+  background: #3a1d1d;
+  height: 1px;
+  border: 0;
+  margin: -7% 0% 3% 0%;
+}
+.board_title {
+  font-size: 22px;
+  font-weight: bold;
+}
+.board_name {
+  display: flex;
+  justify-content: space-between;
+  color: lightgray;
+  margin: 1% 1% 5% 1%;
+}
+.board_name span {
+  color: gray;
+}
+.board_content {
+  word-break: break-all;
+  margin: 1% 1% 5% 1%;
+}
+.button {
+  width: 70px;
+  margin-left: 10px;
+  height: 25px;
+  background: #fee500;
+  border: none;
+  color: #3a1d1d;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#delete_btn {
+  margin-left: 1%;
+  width: 10%;
+  height: 25px;
+  background: #fee500;
+  border: none;
+  color: #3a1d1d;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.comment_title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0% 0% 1% 2%;
+}
+.text_red {
+  color: red;
+}
+.comment {
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 0 0 0;
+  padding: 0;
+}
+.input {
+  display: none;
+}
+.comment_user {
+  width: 20%;
+  font-size: 15px;
+  /* border: 1px solid black; */
+}
+#comment_content {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  /* border: 1px solid blue; */
+}
+.commenttime {
+  font-size: 15px;
+}
+#content_txt {
+  width: 50%;
+}
+.comment_form {
+  /* display: flex; */
+  /* border: 1px solid black; */
+  justify-content: space-between;
+}
+.cancelsubmit {
+  display: flex;
+  justify-content: end;
+}
+.cancelsubmit input {
+  margin: 1% 0 0 1%;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 2%;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+#editdelete {
+  /* margin: 0% 0 0 1%; */
+  background: none;
+  border: none;
+  padding: 0;
+  /* margin-right: 2%; */
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  /* width: 5%; */
+}
+.createcomment {
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.createcomment_head {
+  background-color: #fee500;
+  border: none;
+  color: #3a1d1d;
+  height: 40px;
+  width: 20%;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: auto;
+}
+.createinput {
+  width: 70%;
+  height: 40px;
+  border: 1px solid #ccc;
+}
+.createsubmit {
+  width: 10%;
+  background-color: #191919;
+  color: #fee500;
+  border-radius: 3px;
+  /* margin-bottom: 10px; */
+  /* padding: 5px 10px; */
+  border: none;
+}
+#editdelete {
+  height: 100%;
+}
+/* .commentsubmit {
+  display: flex;
+  justify-content: end;
+}
+.commentsubmit > input {
+  margin-top: 1%;
+  background-color: skyblue;
+  border: none;
+  color: white;
+  height: 40px;
+  width: 15%;
+  font-weight: bold;
+} */
+.titlearea {
+  display: flex;
+  margin-left: 1%;
+}
+.main_name {
+  font-size: 30px;
+  text-align: center;
+  /* margin-bottom: 1%; */
+  color: #fee500;
+  border: 2px solid #fee500;
+  display: inline;
+  padding: 0.8%;
+  padding-left: 1%;
+  padding-right: 1%;
+  font-weight: bold;
+  background: #3a1d1d;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.carlink {
+  border: 1px solid black;
+  margin-top: 2%;
+  width: 70%;
+  border-radius: 15px;
+}
+.carlinkarea {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+.carinfo {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-around;
+  background: #fee500;
+  border-radius: 15px;
+}
+.carinfotitle {
+  width: 11%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #3a1d1d;
+  align-items: center;
+  background: #3a1d1d;
+  border-radius: 10px;
+  color: #fee500;
+  font-weight: bold;
+  font-size: 20px;
+}
+.imgbox {
+  width: 10%;
+  height: 80px;
+  border-radius: 50%;
+  margin-left: 2%;
+  /* border: 1px solid black; */
+  display: flex;
+  overflow: hidden; /* 추가: 사진이 div 경계를 벗어나지 않도록 설정 */
+}
+.thumbnail {
+  width: 99%;
+  height: 99%;
+  margin-top: 1px;
+  border: 2px solid #fff;
+}
+.carzone {
+  font-size: 25px;
+  font-weight: bold;
+  width: 67%;
+  margin-left: 10%;
+}
+.cardetailinfo {
+  font-size: 15px;
+  padding-left: 5%;
+  padding-top: 1%;
+  font-weight: normal;
+}
+.end {
+  display: flex;
+  justify-content: end;
+}
+.end button {
+  width: 10%;
+  height: 25px;
+  background-color: #191919;
+  color: #fee500;
+  border-radius: 3px;
+  /* margin-bottom: 10px; */
+  /* padding: 5px 10px; */
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+<%- include('./include/head.ejs') %>
+<form method="post" action="/faq/inquiry">
+  <div class="inquiryblock" align="center">
+    작성자
+    <input
+      type="text"
+      name="user_id"
+      value="<%= user.id %>"
+    /><br /><br /><br />
+    제목 <input type="text" name="title" class="title" /><br /><br /><br />
+    내용<br /><textarea
+      cols="80"
+      rows="10"
+      name="content"
+      class="content"
+      placeholder="문의 내용을 입력해주세요"
+    ></textarea
+    ><br /><br />
+    <button type="submit" class="inquirybtn" onclick="regist()">등록</button
+    ><br /><br /><br />
+  </div>
+</form>
+<%- include('./include/footer.ejs') %>
+

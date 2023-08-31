@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="stylesheets/auth.css" />
+  <style>
+  body{
+    background-color: #FEE500;
+  }
+  .form{
+    background-color: #fff;
+  }
+  .form label {
+    border-bottom: none;
+    margin-bottom: 5px;
+  }
+  .form input{
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+  .form button{
+    background-color: #FEE500;
+    color: #191919;
+    cursor: pointer;
+  }
+  .form button:hover{
+    background-color: #191919;
+    color: #FEE500;
+  }
+  </style>
+</head>
+
+  <body>
+    <form action="/auth/join" id="joinform" method="post" class="form">
+      <h1 class="title">회원가입</h1>
+      <label for=""
+        ><input id="id" type="text" name="id" required placeholder="아이디"/>
+        <span id="id_feedback"></span>
+      </label>
+        
+      <label for="">
+        <input id="pw" type="password" name="password" placeholder="비밀번호"/>
+        <span id="password_feedback"></span></label>
+      <label for=""
+        ><input id="checkpw" type="password" name="checkpassword" placeholder="비밀번호 재확인"
+      /><span id="password_confirm_feedback"></span></label>
+      <label for=""
+        ><input id="name" type="text" name="name" placeholder="이름"
+      /><span id="name_feedback"></span></label></span>
+      <label for="">
+          <input id="tel" type="number" name="tel" placeholder="전화번호"/>
+        <span id="tel_feedback"></span>
+      </label>
+      <label for=""
+        ><input id="email" type="email" name="email" placeholder="이메일"
+      /><span id="email_feedback"></span></label>
+      <label for=""
+        ><input id="birth" type="number" name="birth" placeholder="나이"
+      /><span id="birth_feedback"></span></label>
+      <button type="button" onclick="checkForm()" class="join_btn">
+        회원가입
+      </button>
+      <!-- <button id="submit" type="submit" onclick="checkForm()" class="join_btn">회원가입</button> -->
+    </form>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const join_form = document.getElementById("joinform");
+      const id = document.getElementById("id");
+      const pw = document.getElementById("pw");
+      const checkpw = document.getElementById("checkpw");
+      const name = document.getElementById("name");
+      const tel = document.getElementById("tel");
+      const email = document.getElementById("email");
+      const birth = document.getElementById("birth");
+      const idFeedback = document.getElementById("id_feedback");
+      const passwordFeedback = document.getElementById("password_feedback");
+      const passwordConfirmFeedback = document.getElementById("password_confirm_feedback")
+      const nameFeedback = document.getElementById("name_feedback");
+      const telFeedback = document.getElementById("tel_feedback");
+      const emailFeedback = document.getElementById("email_feedback");
+      const birthFeedback = document.getElementById("birth_feedback");
+
+      // 비밀번호와 비밀번호 확인 필드의 값을 비교하는 이벤트 리스너
+      checkpw.addEventListener('input', updateValue);
+      
+      function updateValue(e) {
+        console.log(typeof pw, typeof checkpw);
+
+        if(pw.value === checkpw.value) {
+        passwordConfirmFeedback.textContent = "비밀번호가 일치 합니다";
+        passwordConfirmFeedback.style.color = 'green';
+      } else {
+        passwordConfirmFeedback.textContent = "비밀번호가 맞지 않습니다";
+        passwordConfirmFeedback.style.color = 'red';
+      }
+    }
+
+  function checkForm() {
+    if (id.value === "") {
+      alert("아이디를 입력해주세요");
+      id.focus();
+      return false;
+    }
+
+        const idCheck = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
+        if (!idCheck.test(id.value)) {
+          alert("아이디는 영문 + 숫자 조합으로 8~16자리로 설정하셔야 합니다.");
+          pw.focus();
+          return false;
+        }
+        if (pw.value === "") {
+          alert("비밀번호를 입력해주세요");
+          pw.focus();
+          return false;
+        }
+
+        const pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+        if (!pwCheck.test(pw.value)) {
+          alert(
+            "비밀번호는 영문 + 숫자 + 특수문자 조합으로 8~20자리로 설정하셔야 합니다."
+          );
+          pw.focus();
+          return false;
+        }
+
+        if (checkpw.value === "") {
+          alert("비밀번호를 확인해주세요");
+          checkpw.focus();
+          return false;
+        }
+
+        if (pw.value !== checkpw.value) {
+          alert("비밀번호가 다릅니다.");
+          checkpw.focus();
+          return false;
+        }
+
+        if (name.value === "") {
+          alert("이름을 입력해주세요");
+          name.focus();
+          return false;
+        }
+
+        if (tel.value === "") {
+          alert("휴대폰 번호를 입력해주세요");
+          tel.focus();
+          return false;
+        }
+
+        if (!checkTel()) { // 휴대폰 번호 유효성 검사를 수행
+          tel.focus();
+          return false;
+        }
+
+        if (email.value === "") {
+          alert("이메일을 입력해주세요")
+          email.focus()
+          return false;
+        }
+        
+        if (!checkEmail()) { // 이메일 유효성 검사를 수행
+          email.focus();
+          return false;
+        }
+
+        if (birth.value === "") {
+          alert("나이를 입력해주세요");
+          birth.focus();
+          return false;
+        }
+        join_form.submit();
+      }      
+      
+
+      //아이디 유효성 검사 함수
+      function isValidId(id) {
+        // 영문자 숫자 조합 8~16자리 정규식
+        const idRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/;
+        return idRegex.test(id);
+      }
+      // 중복된 아이디 확인 및 유효성 검사
+    id.addEventListener('input', checkId);
+
+    function checkId() {
+      const idValue = id.value;
+      if(!idValue || idValue.trim() === '') {
+        idFeedback.textContent = '아이디를 입력해주세요';
+        idFeedback.style.color = 'red';
+        return;
+      }
+      if (!isValidId(idValue)){
+        idFeedback.textContent = '영문과 숫자를 조합한 8~16자리 아이디를 입력해주세요';
+        idFeedback.style.color = 'red';
+      }
+      axios.get(`auth/check-id?id=${idValue}`)
+      .then(response => {
+        if (response.data.isDuplicate) {
+          idFeedback.textContent = '중복된 아이디입니다';
+          idFeedback.style.color = 'red';
+        } else {
+          idFeedback.textContent = '사용 가능한 아이디입니다';
+          idFeedback.style.color = 'green';
+        }
+      })
+      .catch(error => console.error(error));
+      }
+
+
+      // 비밀번호 유효성 검사
+      pw.addEventListener('input', checkPassword);
+      function checkPassword() {
+        const passwordFeedback = document.getElementById('password_feedback');
+        const pw = document.getElementById('pw')
+        const pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
+        if (!pwCheck.test(pw.value)) {
+          passwordFeedback.textContent = '비밀번호는 영문 + 숫자 + 특수문자 조합으로 8~20자리로 설정하셔야 합니다'
+          passwordFeedback.style.color = 'red';
+          return false;
+        } else {
+          passwordFeedback.textContent = '사용 가능한 비밀번호입니다';
+          passwordFeedback.style.color = 'green';
+          return true;
+        }
+      }
+
+      // 전화번호 유효성 검사
+      tel.addEventListener('input', checkTel);
+      function checkTel() {
+        const telValue = tel.value;
+        const telRegex = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+        
+        if (!telRegex.test(telValue)) {
+          telFeedback.textContent = '올바른 전화번호가 아닙니다';
+          telFeedback.style.color = 'red'
+          return false;
+        } else {
+          telFeedback.textContent = '올바른 전화번호입니다';
+          telFeedback.style.color = 'green';
+          return true;
+        }
+      }
+
+      // 이메일 유효성 검사
+      email.addEventListener('input', checkEmail);
+      function checkEmail() {
+        const emailValue = email.value;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-a-zA-Z.-]+\.[a-zA-Z]{2,}$/i;
+
+        if (!emailRegex.test(emailValue)) {
+                emailFeedback.textContent = '올바른 이메일 주소가 아닙니다';
+                emailFeedback.style.color = 'red';
+                return false;
+            } else {
+                emailFeedback.textContent = '올바른 이메일 주소입니다';
+                emailFeedback.style.color = 'green';
+                return true;
+            }
+        }
+    </script>
+  </body>
+
+</html>

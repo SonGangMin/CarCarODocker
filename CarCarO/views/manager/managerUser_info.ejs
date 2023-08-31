@@ -1,0 +1,170 @@
+<style>
+    body{
+        background-color: #FEE500;
+    }
+    form{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    form label{
+        width: 100%;
+        display: block;
+    }
+    form input{
+       width: 100%; 
+       padding: 10px;
+       border: none;
+       border-bottom: 1px solid #ddd;
+    }
+    form button{
+        width: 100%;
+        padding: 10px;
+        background-color: #FEE500;
+        border: none;
+        color: #191919;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    form button:hover{
+        background-color: #191919;
+        color: #FEE500;
+    }
+</style>
+<form action="/manager/managerUser/editinfo/" id="editform" method="post" class="form" style="float: left; width: 50%;">
+    <h1 class="title">회원 정보 수정</h1>
+    <label for="">
+    <input id="id" type="text" name="id" value="<%= user.id %>" readonly></label><br>
+    <label for="">
+    <input id="pw" type="password" name="password" value="" placeholder="비밀번호를 입력해주세요" onkeyup="checkPassword()">    
+    <span id="password_feedback"></span></label><br>
+    <label for="">
+    <input id="pw_confirm" type="password" name="password_confirm" placeholder="비밀번호 확인을 입력해주세요" value=""></label>
+    <span id="password_confirm_feedback"></span></label><br>
+    <label for="">
+    <input id="name" type="text" name="name" value="<%= user.name %>"></label><br>
+    <label for="">
+        <div class="phone">
+            <input id="tel" type="number" name="tel" value="<%= user.tel %>" placeholder="전화번호를 입력해주세요"></div></label>
+            <span id="tel_feedback"></span><br>
+    <label for="">
+    <input id="email" type="email" name="email" value="<%= user.email %>" placeholder="이메일을 입력해주세요"></label>
+    <span id="email_feedback"></span><br>
+    <label for="">
+    <input id="birth" type="number" name="birth" value="<%= user.birth %>" placeholder="나이를 입력해주세요"></label>
+    <span id="birth_message"></span><br>
+    <button type="button" onclick="submitForm()" class="edit_btn">정보 수정</button>
+    <button type="button" class="cancel_btn" onclick="cancel()">취소</button>
+</form>
+
+
+<script>
+const edit_form = document.getElementById('editform');
+const pw = document.getElementById('pw');
+const password_feedback = document.getElementById('password_feedback');
+const pw_confirm = document.getElementById('pw_confirm')
+const tel = document.getElementById('tel');
+const email = document.getElementById('email');
+const birth = document.getElementById('birth');
+const passwordFeedback = document.getElementById('password_feedback');
+const password_confirm_feedback = document.getElementById('password_confirm_feedback');
+const telFeedback = document.getElementById('tel_feedback');
+const emailFeedback = document.getElementById('email_feedback');
+const birthFeedback = document.getElementById('birth_feedback');
+function cancel() {
+    window.close();
+}
+pw_confirm.addEventListener('input', updateValue);
+
+function updateValue(e) {
+    if (pw.value === pw_confirm.value) {
+        password_confirm_feedback.textContent = "비밀번호가 일치합니다";
+        password_confirm_feedback.style.color = 'green';
+    } else {
+        password_confirm_feedback.textContent = "비밀번호가 일치하지 않습니다";
+        password_confirm_feedback.style.color = 'red';
+    }
+}
+// 비밀번호 유효성 검사
+function checkPassword() {
+    const passwordFeedback = document.getElementById('password_feedback');
+    const pw = document.getElementById('pw');
+    const pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
+    if (!pwCheck.test(pw.value)) {
+        passwordFeedback.textContent = '비밀번호는 영문 + 숫자 + 특수문자 조합으로 8~20자리로 설정하셔야 합니다';
+        passwordFeedback.style.color = 'red';
+        return false;
+    } else {
+        passwordFeedback.textContent = '사용 가능한 비밀번호입니다';
+        passwordFeedback.style.color = 'green';
+        return true;
+    }
+}
+
+// 전화번호 유효성 검사
+tel.addEventListener('input', checkTel);
+function checkTel() {
+    const telValue = tel.value;
+    const telRegex = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+
+    if (!telRegex.test(telValue)) {
+        telFeedback.textContent = '올바른 전화번호가 아닙니다';
+        telFeedback.style.color = 'red'
+        return false;
+    } else {
+        telFeedback.textContent = '올바른 전화번호입니다';
+        telFeedback.style.color = 'green';
+        return true;
+    }
+}
+
+// 이메일 유효성 검사
+email.addEventListener('input', checkEmail);
+function checkEmail() {
+    const emailValue = email.value;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-a-zA-Z.-]+\.[a-zA-Z]{2,}$/i;
+
+    if (!emailRegex.test(emailValue)) {
+        emailFeedback.textContent = '올바른 이메일 주소가 아닙니다';
+        emailFeedback.style.color = 'red';
+        return false;
+    } else {
+        emailFeedback.textContent = '올바른 이메일 주소입니다';
+        emailFeedback.style.color = 'green';
+        return true;
+    }
+}
+function submitForm() {
+    const id = document.getElementById('id').value;
+    const password = document.getElementById('pw').value;
+    const name = document.getElementById('name').value;
+    const tel = document.getElementById('tel').value;
+    const email = document.getElementById('email').value;
+    const birth = document.getElementById('birth').value;
+
+    fetch('/manager/managerUser/editinfo/', {
+        method: 'POST',
+        body: JSON.stringify({ id, password, name, tel, email, birth }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('회원정보가 수정되었습니다.');
+            window.close();
+        }
+    });
+}
+</script>

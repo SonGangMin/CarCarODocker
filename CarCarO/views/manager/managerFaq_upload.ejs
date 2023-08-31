@@ -1,0 +1,20 @@
+<%- include('../include/managerhead.ejs') %>
+<style>
+  .faqupload {
+    position: relative;
+    left: 43%;
+  }
+</style>
+<div class="faqupload">
+<h1>게시글 등록하기</h1>
+<form method="post" action="/manager/managerFaq/">
+  <label>제목</label><br>
+  <input type="text" name="title" required />
+  <br />
+  <label>내용</label><br>
+  <textarea name="content" cols="30" rows="10" required></textarea>
+  <br />
+  <button type="button" id="back" onclick="location.href='/manager/managerFaq/'">뒤로</button>
+  <button type="submit">등록</button>
+</form>
+</div>

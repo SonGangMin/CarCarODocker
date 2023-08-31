@@ -1,0 +1,243 @@
+/* 공통 레이아웃 css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background: #9bbbd4; */
+}
+
+body {
+  position: relative;
+  background-color: #9bbbd4;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+ul,
+ol,
+dl {
+  list-style: none;
+}
+
+a {
+  color: #191919;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #191919 !important;
+  color: #fee500 !important;
+}
+
+/* 헤더 */
+#hd {
+  width: 100%;
+  padding: 0 100px;
+}
+
+/* 헤더상단 */
+.util {
+  width: 100%;
+  padding: 5px 10px;
+  text-align: right;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.util a {
+  font-weight: normal;
+  color: #191919;
+}
+
+/* 헤더하단 */
+.hd_menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fee500;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.hd_lt {
+  display: flex;
+  align-items: center;
+}
+
+/* 로고 */
+.logo {
+  margin-right: 100px;
+}
+.logo a {
+  display: flex;
+  width: 100px;
+  align-items: center;
+}
+.logo img {
+  width: 100%;
+}
+
+/* 네비게이션 메뉴 */
+.nav {
+  display: flex;
+}
+.nav li {
+  width: 100px;
+  margin-right: 15px;
+}
+
+.nav li a {
+  display: block;
+  color: #556677;
+}
+.nav li.active a {
+  color: #191919;
+}
+
+/* 검색, 햄버거메뉴 */
+.hd_rt {
+  display: flex;
+  align-items: center;
+}
+.hd_rt a {
+  position: relative;
+  display: block;
+  width: 23px;
+  height: 18px;
+  z-index: 99999;
+  transition: all 0.3s ease;
+}
+.hd_rt a.active {
+  transform: translateX(100px);
+}
+
+.hd_rt span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #888;
+  transition: all 0.3s ease;
+}
+
+.hd_rt a.active span {
+  background-color: #191919;
+}
+
+.hd_rt span:nth-child(2),
+.hd_rt span:nth-child(3) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.hd_rt span:nth-child(4) {
+  bottom: 0;
+}
+
+.hd_rt a.active span:nth-child(1),
+.hd_rt a.active span:nth-child(4) {
+  opacity: 0;
+}
+.hd_rt a.active span:nth-child(2) {
+  transform: rotate(45deg);
+}
+.hd_rt a.active span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* 슬라이드 메뉴 */
+.slide_menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+.slide_menu.active {
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.slide_menu .nav {
+  position: absolute;
+  right: 0;
+  transform: translateX(100%);
+  width: 350px;
+  height: 100%;
+  flex-direction: column;
+  /* margin-top: 35px; */
+  padding-top: 120px;
+  background-color: #fee500;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.slide_menu.active .nav {
+  transform: translateX(0);
+  opacity: 1;
+}
+.slide_menu .nav li {
+  width: 100%;
+  border-top: 1px solid #fff;
+}
+
+.slide_menu .nav li:first-child {
+  padding: 15px;
+}
+.slide_menu .nav li:last-child {
+  border-bottom: 1px solid #fff;
+}
+.slide_menu .nav li a {
+  color: #191919;
+  padding: 15px;
+}
+.slide_menu .nav li .hashtagsearch {
+  width: 100%;
+}
+.slide_menu .nav li .hashtagsearchbox {
+  width: 100%;
+}
+/* 슬라이드 메뉴 나올때 바디 스크롤 막기 */
+body.noscroll {
+  overflow-y: hidden;
+}
+
+/* 컨테이너 */
+.container {
+  width: 100%;
+  padding: 0 100px 200px;
+}
+
+.contents {
+  width: 100%;
+  padding-top: 30px;
+  background-color: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.contents.carsale {
+  background-color: #9bbbd4;
+}
+
+.title {
+  margin-bottom: 50px;
+}
+.notice_num {
+  font-weight: bold;
+  color: red;
+}
+
+/* 푸터 */
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  padding: 0 100px;
+}
+.footer {
+  background-color: #fff;
+  font-weight: bold;
+}

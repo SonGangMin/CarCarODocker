@@ -1,0 +1,19 @@
+.btn_area {
+  margin-bottom: 0.5%;
+  display: flex;
+  justify-content: end;
+  margin-right: 1%;
+}
+.btnpost {
+  background-color: #fee500;
+  color: #191919;
+  border-radius: 3px;
+  margin-left: 0.5%;
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.title {
+  font-size: 30px;
+}

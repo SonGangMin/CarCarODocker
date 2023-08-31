@@ -1,0 +1,322 @@
+<%- include('./include/head.ejs') %>
+    <div class="container">
+        <div class="contents">
+            <h1 class="title">내차팔기 등록하기</h1>
+            <form method="post" id="carForm" class="formCar" enctype="multipart/form-data">
+                <input type="text" value="<%= Cars.num %>" name="num" id="num" readonly hidden>
+                <label for=""><b>자동차 번호</b><input id="carNum" type="text" name="carNum" placeholder="ex) 00가 0000" value="<%= Cars.carNum %>"></label>
+                <label for="">
+                    <b>국산·수입</b>
+                    <select name="from" id="from">
+                        <option value="">국산·수입</option>
+                        <option value="국산" <%= Cars.from === '국산' ? 'selected' : '' %>>국산</option>
+                        <option value="수입" <%= Cars.from === '수입' ? 'selected' : '' %>>수입</option>
+                    </select>
+                </label>       
+                <label for="">
+                    <b>브랜드</b>
+                    <!-- 국산 -->
+                    <select name="brand" id="brand" class="brand">
+                        <option value="<%= Cars.brand %>" selected><%= Cars.brand %></option>
+                    </select>
+                </label>
+
+                <label for="">
+                    <b>차종</b>
+                    <select id="type" type="text" name="type">
+                        <option value=""></option>
+                        <option value="경차" <%= Cars.type === '경차' ? 'selected' : '' %>>경차</option>
+                        <option value="소형차" <%= Cars.type === '소형차' ? 'selected' : '' %>>소형차</option>
+                        <option value="준중형차" <%= Cars.type === '준중형차' ? 'selected' : '' %>>준중형차</option>
+                        <option value="중형차" <%= Cars.type === '중형차' ? 'selected' : '' %>>중형차</option>
+                        <option value="대형차" <%= Cars.type === '대형차' ? 'selected' : '' %>>대형차</option>
+                        <option value="스포츠카" <%= Cars.type === '스포츠카' ? 'selected' : '' %>>스포츠카</option>
+                        <option value="SUV" <%= Cars.type === 'SUV' ? 'selected' : '' %>>SUV</option>
+                        <option value="승합차" <%= Cars.type === '승합차' ? 'selected' : '' %>>승합차</option>
+                        <option value="화물차" <%= Cars.type === '화물차' ? 'selected' : '' %>>화물차</option>
+                        <option value="버스" <%= Cars.type === '버스' ? 'selected' : '' %>>버스</option>
+                        <option value="리무진" <%= Cars.type === '리무진' ? 'selected' : '' %>>리무진</option>
+                        <option value="캠핑카" <%= Cars.type === '캠핑카' ? 'selected' : '' %>>캠핑카</option>
+                      </select>                      
+                </label>
+
+                <label for="">
+                    <b>모델명</b>
+                    <input type="text" id="model" name="model" placeholder="ex) 그랜저ig" value="<%= Cars.model %>">
+                </label> 
+                <label for=""><b>주행거리</b><input id="mile" type="number" name="mile" placeholder="km" value="<%= Cars.mile %>"></label>
+                <label for="">
+                    <b>연식</b>
+                    <input id="year" type="number" name="year" placeholder="ex) 2023" value="<%= Cars.year %>">
+                </label>
+                <label for="">
+                    <b>연료방식</b>
+                    <select id="fuel" type="text" name="fuel">
+                        <option value="" <%= Cars.fuel === '' ? 'selected' : '' %>>전체</option>
+                        <option value="휘발유" <%= Cars.fuel === '휘발유' ? 'selected' : '' %>>휘발유</option>
+                        <option value="경유" <%= Cars.fuel === '경유' ? 'selected' : '' %>>경유</option>
+                        <option value="전기" <%= Cars.fuel === '전기' ? 'selected' : '' %>>전기</option>
+                        <option value="수소" <%= Cars.fuel === '수소' ? 'selected' : '' %>>수소</option>
+                        <option value="하이브리드" <%= Cars.fuel === '하이브리드' ? 'selected' : '' %>>하이브리드</option>
+                        <option value="기타" <%= Cars.fuel === '기타' ? 'selected' : '' %>>기타</option>
+                      </select>                      
+                </label>
+
+                <label for="">
+                    <b>기어방식</b>
+                    <select id="trans" type="text" name="trans">
+                        <option value="">전체</option>
+                        <option value="수동" <%= Cars.trans === '수동' ? 'selected' : '' %>>수동</option>
+                        <option value="자동" <%= Cars.trans === '자동' ? 'selected' : '' %>>자동</option>
+                      </select>                      
+                </label>
+
+                <label for="">
+                    <b>구동방식</b>
+                    <select id="method" type="text" name="method">
+                        <option value="" <%= Cars.method === '' ? 'selected' : '' %></option>
+                        <option value="전륜" <%= Cars.method === '전륜' ? 'selected' : '' %>>전륜</option>
+                        <option value="후륜" <%= Cars.method === '후륜' ? 'selected' : '' %>>후륜</option>
+                        <option value="사륜" <%= Cars.method === '사륜' ? 'selected' : '' %>>사륜</option>
+                      </select>
+                </label>
+                
+                <label for=""><b>인승</b><input id="seater" type="number" name="seater" placeholder="ex) 5" value="<%= Cars.seater %>"></label>
+
+                <label for=""><b>사진</b><input id="input-multi-files" type="file" name="picture" accept="/*" multiple></label>
+                       
+                <label for="" id="preview" class="preview">
+                    <b>미리보기</b>
+                    <div class="row">
+                        <div class="preview-images"></div>
+                    </div>
+                </label>
+
+                <label for=""><b>판매가격</b><input id="price" type="number" name="price" placeholder="단위: 만원" value="<%= Cars.price %>"></label>
+
+                <label for="">
+                    <b>디스플레이</b>
+                    <span>있음</span> <input id="disp_y" type="radio" name="disp" value="1" <%= Cars.disp == 1 ? 'checked' : '' %>>
+                    <span>없음</span> <input id="disp_n" type="radio" name="disp" value="2" <%= Cars.disp == 2 ? 'checked' : '' %>>
+                </label>
+                                                                
+                <label for="">
+                    <b>선루프</b>
+                    <span>있음</span><input id="roof_y" type="radio" name="roof" value="1" <%= Cars.roof == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="roof_n" type="radio" name="roof" value="2" <%= Cars.roof == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for=""><b>색상</b><input id="color" type="text" name="color" value="<%= Cars.color %>"></label>
+                
+                <label for="">
+                    <b>네비게이션</b>
+                    <span>있음</span><input id="nav_y" type="radio" name="nav" value="1" <%= Cars.nav == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="nav_n" type="radio" name="nav" value="2" <%= Cars.nav == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>스마트키</b>
+                    <span>있음</span><input id="key_y" type="radio" name="key" value="1" <%= Cars.key == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="key_n" type="radio" name="key" value="2" <%= Cars.key == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>오토라이트</b>
+                    <span>있음</span><input id="light_y" type="radio" name="light" value="1" <%= Cars.light == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="light_n" type="radio" name="light" value="2" <%= Cars.light == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>주차센서</b>
+                    <span>있음</span><input id="sensor_y" type="radio" name="sensor" value="1" <%= Cars.sensor == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="sensor_n" type="radio" name="sensor" value="2" <%= Cars.sensor == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>후방카메라</b>
+                    <span>있음</span><input id="camera_y" type="radio" name="camera" value="1" <%= Cars.camera == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="camera_n" type="radio" name="camera" value="2" <%= Cars.camera == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>블랙박스</b>
+                    <span>있음</span><input id="box_y" type="radio" name="box" value="1" <%= Cars.box == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="box_n" type="radio" name="box" value="2" <%= Cars.box == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>가죽시트</b>
+                    <span>있음</span><input id="leather_y" type="radio" name="leather" value="1" <%= Cars.leather == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="leather_n" type="radio" name="leather" value="2" <%= Cars.leather == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>열선시트</b>
+                    <span>있음</span><input id="heated_y" type="radio" name="heated" value="1" <%= Cars.heated == 1 ? 'checked' : '' %>>
+                    <span>없음</span><input id="heated_n" type="radio" name="heated" value="2" <%= Cars.heated == 2 ? 'checked' : '' %>>
+                </label>
+                
+                <label for="">
+                    <b>에어백</b>
+                    <input id="airbag_y" type="text" name="airbag" placeholder="에어백 옵션 위치 ex) 뒷자석 창문손잡이 왼쪽, 오른쪽 " value="<%= Cars.airbag || '' %>">
+                </label>
+                
+                <label for=""><b>기타</b>
+                    <textarea id="etc" name="etc" rows="5"><%= Cars.etc %></textarea>
+                </label>
+                
+                <label for=""><b>해시태그</b><input id="hashtag" type="text" name="hashtag" value="<%= Cars.hashtag %>"></label>
+
+                <label for=""><b>연락처</b><input id="tel" type="number" name="tel" value="<%= Cars.tel %>"></label>
+
+                <input id="img-url" type="hidden" name="url">
+                
+                <button type="submit" class="join_btn">내차 등록</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+          let imagesPreview = function(input, placeToInsertImagePreview) {
+            if (input.files) {
+              let filesAmount = input.files.length;
+              for (i = 0; i < filesAmount; i++) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                  $($.parseHTML("<img>"))
+                    .attr("src", event.target.result)
+                    .appendTo(placeToInsertImagePreview);
+                };
+                reader.readAsDataURL(input.files[i]);
+              }
+            }
+          };
+          $("#input-multi-files").on("change", function() {
+            imagesPreview(this, "div.preview-images");
+          });
+        });
+  
+  
+        const form = document.querySelector('#carForm');
+        const numInput = document.querySelector('#num');
+        const carNumInput = document.querySelector('#carNum');
+        const fromInput = document.querySelector('#from');
+        const brandInput = document.querySelector('#brand');
+        const typeInput = document.querySelector('#type');
+        const modelInput = document.querySelector('#model');
+        const mileInput = document.querySelector('#mile');
+        const yearInput = document.querySelector('#year');
+        const fuelInput = document.querySelector('#fuel');
+        const seaterInput = document.querySelector('#seater');
+        const methodInput = document.querySelector('#method');
+        const transInput = document.querySelector('#trans');
+        const fileInput = document.querySelector('#input-multi-files');
+        const colorInput = document.querySelector('#color');
+        let dispInput=null; 
+        dispInput = document.getElementsByName('disp').value;
+        let roofInput=null;
+        roofInput = document.getElementsByName('roof').value;
+        let navInput=null;
+        navInput = document.getElementsByName('nav').value;
+        let keyInput=null;
+        keyInput = document.getElementsByName('key').value;
+        let lightInput=null;
+        lightInput = document.getElementsByName('light').value;
+        let sensorInput=null;
+        sensorInput = document.getElementsByName('sensor').value;
+        let cameraInput=null;
+        cameraInput = document.getElementsByName('camera').value;
+        let boxInput=null;
+        boxInput = document.getElementsByName('box').value;
+        let leatherInput=null;
+        leatherInput  = document.getElementsByName('leather').value;
+        const airbagInput = document.getElementsByName('airbag');
+        const heatedInput = document.getElementsByName('heated');
+        const etcInput = document.querySelector('#etc');
+        const priceInput = document.querySelector('#price');
+        const telInput = document.querySelector('#tel');
+        const hashtagInput = document.querySelector('#hashtag');
+  
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('num', numInput.value);
+            formData.append('carNum', carNumInput.value);
+            formData.append('from', fromInput.value);
+            formData.append('brand', brandInput.value);
+            formData.append('model', modelInput.value);
+            formData.append('mile', mileInput.value);
+            formData.append('year', yearInput.value);
+            formData.append('fuel', fuelInput.value);
+            formData.append('trans', transInput.value);
+            formData.append('seater', seaterInput.value);
+            formData.append('type', typeInput.value);
+            formData.append('method', methodInput.value);
+            formData.append('color', colorInput.value);
+            formData.append('tel', telInput.value);
+            
+            let dispInput = document.querySelector('input[name = disp]:checked').value;
+            formData.append('disp', dispInput);
+            
+            let roofInput = document.querySelector('input[name = roof]:checked').value;
+            formData.append('roof', roofInput);
+            
+            let navInput = document.querySelector('input[name = nav]:checked').value;
+            formData.append('nav', navInput);
+            
+            let keyInput = document.querySelector('input[name = key]:checked').value;
+            formData.append('key', keyInput);
+            
+            let lightInput = document.querySelector('input[name = light]:checked').value;
+            formData.append('light', lightInput);
+            
+            let sensorInput = document.querySelector('input[name = sensor]:checked').value;
+            formData.append('sensor', sensorInput);
+            
+            let cameraInput = document.querySelector('input[name = camera]:checked').value;
+            formData.append('camera', cameraInput);
+            
+            let boxInput = document.querySelector('input[name = box]:checked').value;
+            formData.append('box', boxInput);
+            
+            let leatherInput = document.querySelector('input[name = leather]:checked').value;
+            formData.append('leather', leatherInput);
+            
+            let heatedInput = document.querySelector('input[name = heated]:checked').value;
+            formData.append('heated', heatedInput);
+
+            formData.append('airbag', airbagInput.value);
+            formData.append('etc', etcInput.value);
+            formData.append('price', priceInput.value);
+            formData.append('hashtag', hashtagInput.value);
+            
+            for (const file of fileInput.files) {
+            formData.append('files', file);
+            }
+            console.log(formData);
+
+            const carNum = window.location.pathname.split('/').pop();
+            try {
+                const response = await axios.post(`/car/edit/${carNum}`, formData, {
+                    headers: {
+                    'Content-Type': 'multipart/form-data',
+                    },
+                });
+
+                if(response.status == 200){
+                    confirm('등록하시겠습니까?');
+                    return(location.href="/car/carsale");
+                }
+                console.log("111", response.status);
+                console.log("222", response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    </script>
+    <script src="/javascript/car.js" defer></script>
+</body>
+</html>
+<%- include('./include/footer.ejs') %>

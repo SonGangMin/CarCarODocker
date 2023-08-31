@@ -1,0 +1,28 @@
+* a {
+  text-decoration-line: none;
+  color: black;
+}
+.container5 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.contents5 {
+  display: block;
+  width: 80%;
+  justify-content: center;
+}
+
+.Faq-btn {
+  background-color:#FEE500;
+  color: #000000;
+  border-radius:3px;
+}
+
+.Faq-btn:hover {
+  cursor: pointer;
+}
+
+.Faq-btn:active {
+  background-color: #dbc501;
+}

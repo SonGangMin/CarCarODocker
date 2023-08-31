@@ -1,0 +1,43 @@
+.resultbox {
+  border: solid 1px black;
+  padding: 100px;
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+.resultbox ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.resultbox ul li {
+  width: 25%;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.resultbox h1 {
+  text-align: center;
+}
+
+.listbox {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.like {
+  position: relative;
+  right: -35%;
+  top: -40px;
+}
+
+.like {
+  position: relative;
+  right: -35%;
+  top: -40px;
+}
+
+#highlight {
+  background-color: lightcoral;
+}

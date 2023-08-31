@@ -1,0 +1,22 @@
+<%- include('../include/managerhead.ejs')%>
+
+<h1 align="center">답변하기</h1>
+<form action="/manager/managerinquiry/<%= title.number %>" method="post">
+<div align="center">
+    <p>유저ID: <%= title.user_id %></p>
+    <p>제목: <%= title.title %></p>
+    <p>내용: <%= title.content %></p>
+    <span style="color: black;">
+        <%= title.updatedAt.getFullYear() %>년
+        <%= (title.updatedAt.getMonth() + 1) %>월
+        <%= title.updatedAt.getDate() %>일
+        (<%= ["일", "월", "화", "수", "목", "금", "토"][title.updatedAt.getDay()] %>)
+    </span><br><br>
+    답변<br>
+    <textarea style="border: solid 1px white;" rows="15" cols="70"
+    name="answer"><%= title.answer %>
+    </textarea><br>
+    <button><a href="/manager/managerinquiry">뒤로가기</a></button>
+    <button type="submit">등록</button>
+</form>
+</div>

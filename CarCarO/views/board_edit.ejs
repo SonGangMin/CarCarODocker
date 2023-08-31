@@ -1,0 +1,69 @@
+<%- include('./include/head.ejs') %>
+<link rel="stylesheet" href="/stylesheets/newpost.css" />
+<div class="container">
+  <div class="contents">
+    <div class="titlearea">
+      <div class="main_name" onclick="location.href='/board/'">커뮤니티</div>
+    </div>
+    <hr class="greenhr" />
+    <div class="board_container2">
+      <div class="board_title">게시글 등록하기</div>
+      <form
+        method="post"
+        action="/board/edit/<%= post.postId %>"
+        onsubmit="return validateForm()"
+      >
+        <input
+          type="text"
+          name="title"
+          value="<%= post.title %>"
+          class="input_title"
+        />
+        <hr class="greenhr2" />
+        <textarea
+          name="content"
+          id="myTextarea"
+          cols="100"
+          rows="30"
+          class="input_content"
+        >
+<%= post.content %></textarea
+        >
+        <hr class="greenhr2" />
+        <div class="buttons">
+          <button type="button" id="back" onclick="location.href='/board'">
+            뒤로
+          </button>
+          <button type="submit">등록</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // tap키인식
+  var textarea = document.getElementById("myTextarea");
+  textarea.addEventListener("keydown", function (e) {
+    if (e.keyCode === 9) {
+      e.preventDefault();
+      var start = this.selectionStart;
+      var end = this.selectionEnd;
+      this.value =
+        this.value.substring(0, start) + "\t" + this.value.substring(end);
+      this.selectionStart = this.selectionEnd = start + 1;
+    }
+  });
+  // 유효성검사
+  function validateForm() {
+    var title = document.forms[0].title.value;
+    var content = document.getElementById("myTextarea").value;
+
+    if (title === "" || content === "") {
+      alert("제목과 내용을 모두 입력해주세요.");
+      return false;
+    }
+  }
+</script>
+
+<%- include('./include/footer.ejs') %>

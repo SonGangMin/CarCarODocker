@@ -1,0 +1,90 @@
+.faqblock {
+    width: 700px;
+    height: 1200px;
+    margin: 0 auto;
+    padding: 50px 50px;
+}
+
+.manyques {
+    position: relative;
+    left: -10%;
+}
+
+.search {
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.btn {
+    color: black;
+    background-color: lightpink;
+    width: 60px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.manytime :hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.manytime {
+    width: 800px;
+    height: 700px;
+    position: relative;
+    left: -33%;
+    padding: 10px 50px;
+    border: solid 1px #000000;
+    border-radius: 15px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.inquiry {
+    width: 80px;
+    height: 40px;
+    position: relative;
+    left: 80%;
+    background-color: lightgreen;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.warningblock {
+    width: 497px;
+    height: 150px;
+    padding: 50px;
+    border: solid 1px #000000;
+    position: relative;
+    /* display: flex; */
+    /* justify-content: center; */
+    position: relative;
+    left: -10%;
+}
+
+.leftblock {
+    width: 50%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    position: relative;
+    left: -13%;
+    top: -106%;
+    /* background-color: yellow; */
+}
+
+.rightblock {
+    width: 50%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    position: relative;
+    top: -106%;
+    /* background-color: green; */
+}

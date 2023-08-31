@@ -1,0 +1,33 @@
+.inquiryblock {
+    width: 1000px;
+    height: 1200px;
+    margin: 0 auto;
+    padding: 50px 50px;
+}
+
+.inquirybtn {
+    width: 70px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.cancelbtn {
+    width: 70px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.answer {
+    width: 450px;
+    height: 180px;
+    margin: 0 auto;
+    padding: 50px 50px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.content {
+    width: 600px;
+    height: 500px;
+}

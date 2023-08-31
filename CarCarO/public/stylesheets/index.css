@@ -1,0 +1,514 @@
+.empty {
+  border: solid 1px black;
+  width: 600px;
+  height: 350px;
+  margin: 0 auto;
+}
+
+/* 슬라이드 */
+.slider {
+  width: 98%;
+  margin: 0 auto;
+}
+.slick-list {
+  border-radius: 30px;
+}
+
+.slider img {
+  width: 100%;
+  max-height: 600px;
+}
+
+.slick-prev {
+  z-index: 999;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  background-image: url(../images/arrow.png);
+  background-size: 100%;
+  background-color: transparent;
+  transform: rotate(180deg);
+  text-indent: -9999px;
+  border: none;
+  width: 35px;
+  height: 35px;
+  opacity: 0.5;
+}
+
+.slick-next {
+  z-index: 999;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  background-image: url(../images/arrow.png);
+  background-size: 100%;
+  background-color: transparent;
+  text-indent: -9999px;
+  border: none;
+  width: 35px;
+  height: 35px;
+  opacity: 0.5;
+}
+
+.slick-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slick-dots > li {
+  margin-right: 10px;
+  /* text-indent: -99999px; */
+}
+.slick-dots > li button {
+  text-indent: -9999px;
+  width: 10px;
+  height: 10px;
+  background-color: #aaa;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+}
+.slick-dots > li.slick-active button {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* 해시태그 */
+.hashtagsearch {
+  position: relative;
+  margin-right: 20px;
+  width: 280px;
+  /* border: solid 1px black; */
+}
+.hashtagsearchbox {
+  width: 280px;
+  height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 0 10px;
+}
+.hashtagsearch button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+}
+
+/* 검색하기 */
+.findcar {
+  width: 100%;
+  padding: 100px;
+}
+.findcar h1 {
+  text-align: center;
+}
+.bigbox form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #9bbbd4;
+  border-bottom-style: dotted;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+.bigbox form div input,
+.bigbox form div select {
+  font-size: 16px;
+  padding: 10px;
+  border: 3px solid #9bbbd4;
+  background-color: #fff;
+  color: #9bbbd4;
+  font-weight: bold;
+  border-radius: 50px;
+}
+.bigbox form div:nth-child(1) input,
+.bigbox form div:nth-child(1) select {
+  width: calc(100% / 3 - 5px);
+}
+.bigbox form div:nth-child(2) select,
+.bigbox form div:nth-child(5) select {
+  width: calc(100% / 2 - 15px);
+}
+.bigbox form div:nth-child(3) select,
+.bigbox form div:nth-child(4) select {
+  width: calc(100% / 2 - 15px);
+}
+.bigbox form div input::placeholder {
+  color: #9bbbd4;
+}
+.bigbox form div span {
+  color: #9bbbd4;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.findcar button {
+  display: inline-block;
+  width: 100%;
+  background-color: #fee500;
+  color: #191919;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 50px;
+  border: none;
+}
+
+.findcar button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/* 검색 리스트 */
+.bigbox ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.bigbox ul li {
+  width: 25%;
+  padding: 10px 10px;
+  text-align: center;
+}
+.carsale ul li {
+  background-color: #fff;
+}
+
+.bigbox1 {
+  border-bottom: 3px solid #9bbbd4;
+  border-bottom-style: dotted;
+  padding-bottom: 100px;
+}
+.bigbox1 button {
+  width: 100%;
+}
+.bigbox2 {
+  margin-top: 100px;
+}
+
+.statistics {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.statisCount div {
+  display: flex;
+  align-items: flex-end;
+}
+.statistics div span {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #191919;
+  margin-right: 10px;
+}
+.statistics div h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #9bbbd4;
+}
+.statistics select {
+  border: 2px solid #9bbbd4;
+  background-color: transparent;
+  padding: 5px 0;
+  color: #9bbbd4;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.condition {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.condition div {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: #fee500;
+  border-radius: 50px;
+  color: #191919;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* 추천차량, 인기차량 */
+.reccar {
+  border-bottom: 4px solid #ddd;
+  border-bottom-style: dotted;
+  padding: 50px 100px;
+  position: relative;
+  width: 100%;
+  display: block;
+  /* left: 15%; */
+}
+.contents h1 {
+  position: relative;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.contents h1:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background-color: #fee500;
+}
+
+.reccar ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reccar ul li {
+  width: 25%;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.reccar h1 {
+  text-align: center;
+}
+.popucar {
+  /* border: solid 1px black; */
+  padding: 50px 100px;
+  position: relative;
+  width: 100%;
+  display: block;
+  /* left: 15%; */
+}
+
+.popucar ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.popucar ul li {
+  width: 25%;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.popucar h1 {
+  text-align: center;
+}
+
+.thumbnail {
+  width: 99%;
+  height: 150px;
+  margin-top: 1px;
+  border: 2px solid #fff;
+}
+
+.reccarlist,
+.popucarlist {
+  position: relative;
+  border: solid 2px #fee500;
+  width: 100%;
+  border-radius: 20px;
+  height: 293px;
+  padding-bottom: 10px;
+  background-color: #9bbbd4;
+  overflow: hidden;
+}
+.reccarlist img,
+.popucarlist img {
+  border-top-left-radius: 17px;
+  border-top-right-radius: 17px;
+}
+
+.carProfile {
+  position: absolute;
+  background-color: #fff;
+  border-bottom-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+  width: 100%;
+  height: 137px;
+  padding-top: 5px;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  margin: -30px auto 0;
+}
+.carProfile span {
+  position: relative;
+  display: inline-block;
+  padding-right: 5px;
+  font-size: 14px;
+  color: #aaa;
+  font-weight: normal;
+}
+.carProfile span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-35%);
+  width: 1px;
+  height: 12px;
+  background-color: #ddd;
+}
+.carProfile span:nth-child(2):after,
+.carProfile span:nth-child(5):after {
+  display: none;
+}
+.carProfile h5 {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  color: #9bbbd4;
+}
+.carProfile h5 p {
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 5px;
+  color: #191919;
+}
+
+.like {
+  position: relative;
+  right: -41% !important;
+  top: -33px !important;
+}
+.like button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+  background-color: transparent !important;
+}
+.notLoggedIn {
+  background-color: transparent !important;
+  border: none !important;
+}
+.heart {
+  border: none !important;
+  background-color: transparent !important;
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+}
+.Mine {
+  border: none !important;
+  background-color: transparent !important;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 커뮤니티 */
+.notice {
+  padding: 0 20px 20px;
+}
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.board-table li {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 2px solid #eee;
+  border-radius: 50px;
+  padding: 10px 0;
+  margin-bottom: 5px;
+}
+.text_right {
+  text-align: right;
+  margin: 20px 0 10px;
+}
+.text_right button {
+  border: none;
+  background-color: #fee500;
+  color: #191919;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.text_right button:hover {
+  background-color: #191919;
+  color: #fee500;
+}
+
+.board-table li b {
+  text-align: center !important;
+}
+.board-table li b:nth-child(1),
+.board-table li p:nth-child(1) {
+  width: 5%;
+  text-align: center;
+}
+.board-table li b:nth-child(2),
+.board-table li p:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+.board-table li b:nth-child(3),
+.board-table li p:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+.board-table li b:nth-child(4),
+.board-table li p:nth-child(4) {
+  width: 30%;
+  text-align: center;
+}
+.board-table li b:nth-child(5),
+.board-table li p:nth-child(5) {
+  width: 5%;
+  text-align: center;
+}
+
+.search-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.search-wrap select,
+.search-wrap input {
+  color: #9bbbd4;
+  font-weight: bold;
+  border: 2px solid #9bbbd4;
+  background-color: #fff;
+  border-radius: 50px;
+  padding: 5px;
+  margin-right: 5px;
+}
+.search-wrap input::placeholder {
+  color: #9bbbd4;
+}
+.search-wrap .btn {
+  background-color: #fee500;
+  color: #191919;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+/*  */
+
+#highlight {
+  background-color: lightcoral;
+}
+
+.hash {
+  width: 25%;
+  display: flex;
+  display: inline;
+  margin: 5%;
+}
+
+.adver_ {
+  cursor: pointer;
+}

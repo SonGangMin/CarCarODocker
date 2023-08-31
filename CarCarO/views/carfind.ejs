@@ -1,0 +1,376 @@
+<%- include('./include/head.ejs') %>
+<body>
+  <div class="container">
+    <div class="contents">
+      <div class="findcar">
+        <h1>차량검색</h1>
+        <div class="bigbox" id="search">
+          <div class="bigbox bigbox1" id="search">
+            <form action="/car/carfind/search/" method="get">
+              <div class="searchbox">
+                <select class="select1" name="from" id="from">
+                  <option value="">국산·수입</option>
+                  <option value="국산">국산</option>
+                  <option value="수입">수입</option>
+        
+                </select>
+                <select class="select1" name="brand" id="brand">
+                  <option value="">국산·수입 선택하세요</option>
+              </select>
+              
+              <input type="text" name="model" class="select1" placeholder="모델명">
+          </div>
+          <div>
+            <select name="trans" id="trans">
+              <option value='' selected>변속기</option>
+              <option value="수동">수동</option>
+              <option value="자동">자동</option>
+            </select>
+            <select name="fuel" id="fuel">
+              <option value="" selected>사용연료</option>
+              <option value="휘발유">휘발유</option>
+              <option value="경유">경유</option>
+              <option value="전기">전기</option>
+              <option value="수소">수소</option>
+              <option value="하이브리드">하이브리드</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+              <div class="price-input">
+                <select name="lowprice" id="lowprice">
+                  <option value="0" selected>0 만원</option>
+                  <option value="100">100 만원</option>
+                  <option value="200">200 만원</option>
+                  <option value="300">300 만원</option>
+                  <option value="400">400 만원</option>
+                  <option value="500">500 만원</option>
+                  <option value="600">600 만원</option>
+                  <option value="700">700 만원</option>
+                  <option value="800">800 만원</option>
+                  <option value="900">900 만원</option>
+                  <option value="1000">1000 만원</option>
+                  <option value="2000">2000 만원</option>
+                  <option value="3000">3000 만원</option>
+                  <option value="4000">4000 만원</option>
+                  <option value="5000">5000 만원</option>
+                  <option value="6000">6000 만원</option>
+                </select>
+                <span>~</span>
+                <select name="highprice" id="highprice">
+                  <option value="50000">5 억원</option>
+                  <option value="20000">2 억원</option>
+                  <option value="10000">1 억원</option>
+                  <option value="8000">8000 만원</option>
+                  <option value="6000">6000 만원</option>
+                  <option value="5000">5000 만원</option>
+                  <option value="4000">4000 만원</option>
+                  <option value="3000">3000 만원</option>
+                  <option value="2000">2000 만원</option>
+                  <option value="1000">1000 만원</option>
+                  <option value="900">900 만원</option>
+                  <option value="800">800 만원</option>
+                  <option value="700">700 만원</option>
+                  <option value="600">600 만원</option>
+                  <option value="500">500 만원</option>
+                  <option value="400">400 만원</option>
+                  <option value="300">300 만원</option>
+                  <option value="200">200 만원</option>
+                  <option value="100">100 만원</option>
+                  <option value="0">0 만원</option>
+                </select>
+              </div>
+              <div>
+                <select name="startyear" id="startyear">
+                  <option value="0" selected>연식- 2000년 이전</option>
+                  <option value="2001">2001년</option>
+                  <option value="2002">2002년</option>
+                  <option value="2003">2003년</option>
+                  <option value="2004">2004년</option>
+                  <option value="2005">2005년</option>
+                  <option value="2006">2006년</option>
+                  <option value="2007">2007년</option>
+                  <option value="2008">2008년</option>
+                  <option value="2009">2009년</option>
+                  <option value="2010">2010년</option>
+                  <option value="2011">2011년</option>
+                  <option value="2012">2012년</option>
+                  <option value="2013">2013년</option>
+                  <option value="2014">2014년</option>
+                  <option value="2015">2015년</option>
+                  <option value="2016">2016년</option>
+                  <option value="2017">2017년</option>
+                  <option value="2018">2018년</option>
+                  <option value="2019">2019년</option>
+                  <option value="2020">2020년</option>
+                  <option value="2021">2021년</option>
+                  <option value="2022">2022년</option>
+                  <option value="2023">2023년</option>
+                </select>
+                <span>~</span>
+                <select name="endyear" id="endyear">
+                  <option value="2001">2001년</option>
+                  <option value="2002">2002년</option>
+                  <option value="2003">2003년</option>
+                  <option value="2004">2004년</option>
+                  <option value="2005">2005년</option>
+                  <option value="2006">2006년</option>
+                  <option value="2007">2007년</option>
+                  <option value="2008">2008년</option>
+                  <option value="2009">2009년</option>
+                  <option value="2010">2010년</option>
+                  <option value="2011">2011년</option>
+                  <option value="2012">2012년</option>
+                  <option value="2013">2013년</option>
+                  <option value="2014">2014년</option>
+                  <option value="2015">2015년</option>
+                  <option value="2016">2016년</option>
+                  <option value="2017">2017년</option>
+                  <option value="2018">2018년</option>
+                  <option value="2019">2019년</option>
+                  <option value="2020">2020년</option>
+                  <option value="2021">2021년</option>
+                  <option value="2022">2022년</option>
+                  <option value="2023" selected>2023년</option>
+                </select>
+              </div> 
+              <div>
+                <select name="shortmile" id="shortmile">
+                  <option value="0" selected>0 km</option>
+                  <option value="100" >100 km</option>
+                  <option value="500" >500 km</option>
+                  <option value="1000" >1,000 km</option>
+                  <option value="5000" >5,000 km</option>
+                  <option value="10000" >10,000km</option>
+                  <option value="20000" >20,000 km</option>
+                  <option value="50000" >50,000 km</option>
+                  <option value="100000" >100,000 km</option>
+                  <option value="200000" >200,000 km</option>
+                  <option value="500000" >500,000 km</option>
+                </select>
+                <span>~</span>
+                <select name="longmile" id="longmile">
+                  <option value="500000" selected>500,000 km</option>
+                  <option value="200000" >200,000 km</option>
+                  <option value="100000" >100,000 km</option>
+                  <option value="50000" >50,000 km</option>
+                  <option value="20000" >20,000 km</option>
+                  <option value="10000" >10,000km</option>
+                  <option value="5000" >5,000 km</option>
+                  <option value="1000" >1,000 km</option>
+                  <option value="500" >500 km</option>
+                  <option value="100" >100 km</option>
+                  <option value="0" >0 km</option>
+                </select>
+              </div>
+                <button type="submit">검색</button><br />
+          </div>
+
+          </form>
+        </div>
+
+        <div class="bigbox bigbox2" id="list">
+          <h1>전체 차량</h1>
+          <div class="statistics">
+            <div class="statisCount">
+              <div>
+                <span>전체:</span><h3><%= total %></h3><span>대</span>
+              </div>
+              <div>
+                <span>최근등록(24시간):</span><h3><%= recenttotal %></h3><span>대</span>
+              </div>
+            </div>
+            <select name="sort" onchange="sortCars(this.value)">
+              <option value="" selected>정렬</option>
+              <option value="createdAt_desc">최근 등록순</option>
+              <option value="likes_desc">추천순</option>
+              <option value="year_desc">최근 연식순</option>
+              <option value="year_asc">오래된 연식순</option>
+              <option value="mile_asc">적은 주행거리순</option>
+              <option value="mile_desc">많은 주행거리순</option>
+              <option value="price_asc">낮은 가격순</option>
+              <option value="price_desc">높은 가격순</option>
+            </select>
+          </div>
+          
+          <br />
+          <ul>
+            <% twits.forEach(function(twit) { %>
+              <li>
+                <a href="/car/detail/<%= twit.num %>">
+                  <div class="reccarlist" id="<%= isMine === twit.user_id ? 'highlight' : '' %>">
+                    <% if (twit.picture.length > 0) { %>
+                      <img src="<%= twit.picture[0].url %>" alt="" class="thumbnail">
+                      <% } %>
+                    <div class="like">
+                      <% let count=0; %>
+                      <% for(let i=0; i < twit.likes.length; i++) { %>
+                        <% if(twit.likes[i].user_id == isMine) { %>
+                          <% count++; %>
+                        <% } %>
+                      <% } %>
+
+                      <% if (typeof isMine === 'undefined') { %>
+                        <button class="notLoggedIn" onclick="notLogin(event)"><i class="fa-solid fa-heart" style="color: #000;"></i> <%= twit.likes_count %></button>
+                    <% } else if (isMine === twit.user_id) { %>
+                        <button class="Mine" onclick="myCar(event)"><i class="fa-solid fa-user"></i> 내차<%= twit.likes_count %></button>
+                    <% } else { %>
+                        <% if(!count) { %>
+                        <form action="/car/carLike" method="post">
+                            <input type="hidden" name="carNum" value="<%= twit.num %>">
+                            <button type="submit" class="heart"><i class="fa-solid fa-heart" style="color: #000;"></i> <%= twit.likes_count %></button>
+                        </form>
+                        <% } else { %>
+                        <form action="/car/carDislike" method="post" onsubmit="return confirm('관심차량 목록에서 삭제하시겠습니까?')">
+                            <input type="hidden" name="carNum" value="<%= twit.num %>">
+                            <button type="submit" class="heart"><i class="fa-solid fa-heart" style="color: red;"></i> <%= twit.likes_count %></button>
+                        </form>
+                    <% } %>
+                    <% } %>
+                    </div>
+                    <div class="carProfile">
+                      <div><%= twit.brand %> <%= twit.model %></div>
+                      <div class="carOption">
+                          <span><%= twit.year %>년식</span>
+                          <span><%= twit.mile %>km</span><br>
+                          <span><%= twit.fuel %></span>
+                          <span><%= twit.area %></span>
+                          <h5><%= twit.price %><p>만원</p></h5>
+                      </div>
+                      <!-- <% for(i=0; i<Math.min(twit.hashtags.length,4); i++) { %>
+                          <div class="hash">#<%= twit.hashtags[i].cars_hashtag %></div>
+                      <% } %> -->
+                  </div>
+                  </div>
+                </a>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+        <%- include('./include/pagination.ejs') %>
+      </div>
+    </div>
+</div>
+  <script>
+    function onPageClick(event, page) {
+      const queryParams = new URLSearchParams(window.location.search);
+      queryParams.set('page', page); // 현재 페이지 설정
+    
+      const queryString = queryParams.toString();
+      const searchUrl = `/car/carfind?${queryString}`;
+    
+      location.href = searchUrl;
+    }
+  </script>
+
+  <script>
+    window.onload = () => {
+    setQueryStringParams();
+    setSelectedSort();
+    }
+    const fromSelect = document.querySelector('#from');
+    const brandSelect = document.querySelector('#brand');
+
+    fromSelect.addEventListener('change', () => {
+      if (fromSelect.value === "국산") {
+      brandSelect.innerHTML = `
+          <option value="">국산 전체</option>
+          <option value="현대">현대</option>
+          <option value="제네시스">제네시스</option>
+          <option value="기아">기아</option>
+          <option value="쉐보레">쉐보레(GM대우)</option>
+          <option value="쌍용">쌍용</option>
+          <option value="국산기타">기타</option>
+          
+      `;
+    } else if (fromSelect.value === "수입") {
+      brandSelect.innerHTML = `
+      <option value="">수입 전체</option>
+      <option value="벤츠">벤츠</option>
+      <option value="아우디">아우디</option>
+      <option value="BMW">BMW</option>
+      <option value="볼보">볼보</option>
+      <option value="폭스바겐">폭스바겐</option>
+      <option value="포르쉐">포르쉐</option>
+      <option value="수입기타">기타</option>
+      `;
+    } else {
+      brandSelect.innerHTML = `
+        <option value="" selected>국산·수입 선택하세요</option>
+      `;
+    }
+    });
+    function sortCars(sort) {
+          const url = `/car/carfind${sort ? `?sort=${sort}` : ""}`;
+          window.location.href = url;
+        }
+
+    function setSelectedSort() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const sortValue = urlParams.get('sort');
+      if (sortValue) {
+        document.querySelector('select[name="sort"]').value = sortValue;
+      }
+    }
+    function setQueryStringParams(){
+      if(!location.search){
+        return false;
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchfrom = urlParams.get('from')
+      const searchbrand = urlParams.get('brand')
+      const searchmodel = urlParams.get('model')
+      const searchlowprice = urlParams.get('lowprice')
+      const searchhighprice = urlParams.get('highprice')
+      const searchtrans = urlParams.get('trans')
+      const searchfuel = urlParams.get('fuel')
+      const searchstartyear = urlParams.get('startyear')
+      const searchendyear = urlParams.get('endyear')
+      const searchshortmile = urlParams.get('shortmile')
+      const searchlongmile = urlParams.get('longmile')
+
+      if(searchfrom){
+        document.querySelector('#from').value=searchfrom;
+      }
+      if(searchbrand){
+        document.querySelector('#brand').value=searchbrand;
+      }
+      if(searchmodel){
+        document.querySelector('input[name="model"]').value = searchmodel;
+      }
+      if(searchlowprice){
+        document.querySelector('#lowprice').value=searchlowprice;
+      }
+      if(searchhighprice){
+        document.querySelector('#highprice').value=searchhighprice;
+      }
+      if(searchtrans){
+        document.querySelector('#trans').value=searchtrans;
+      }
+      if(searchfuel){
+        document.querySelector('#fuel').value=searchfuel;
+      }
+      if(searchstartyear){
+        document.querySelector('#startyear').value=searchstartyear;
+      }
+      if(searchendyear){
+        document.querySelector('#endyear').value=searchendyear;
+      }
+      if(searchshortmile){
+        document.querySelector('#shortmile').value=searchshortmile;
+      }
+      if(searchlongmile){
+        document.querySelector('#longmile').value=searchlongmile;
+      }
+    }
+    function notLogin(event){
+      event.preventDefault();
+      alert('로그인이 필요합니다.')
+      window.location.href = '/login'
+    }
+    function myCar(event){
+      event.preventDefault();
+      alert('자신의 차량은 추천할 수 없습니다.')
+    }
+  </script>
+</body>
+<%- include('./include/footer.ejs') %>

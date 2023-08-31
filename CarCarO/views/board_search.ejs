@@ -1,0 +1,113 @@
+<%- include('./include/head.ejs') %>
+<link rel="stylesheet" href="/stylesheets/board.css">
+<div class="container">
+  <div class="contents">
+    <section class="notice">
+    <h1 class="title">커뮤니티</h1>
+
+      <div id="board-list">
+        <div class="btn_area">
+        <% if(user && user.id !== 'undefined') { %>
+          <button class="btnpost"
+            onclick="location.href='/board/search/?searchType=id&result=<%= user.id %>'"
+          >
+            내 글 보기
+          </button>
+        <% } %>
+        <button class="btnpost" onclick="redirectToNewPost()">게시글 등록</button>
+        </div>
+        <ul class="board-table">
+            <li class="top_li">
+              <b class="b-num">번호</b>
+              <b class="b-title">제목</b>
+              <b class="b-user">작성자</b>
+              <b class="b-date">등록일</b>
+              <b class="b-view">조회수</b>
+            </li>
+            <% results.forEach(function(twit) { %>
+            <li<% if (twit.grade === 2) { %> class="notice-row"<% } %>>
+              <p>
+                <% if (twit.grade === 2) { %> <span class="notice_num">공지</span> <% } else { %> <%= twit.postId
+                %> <% } %>
+              </p>
+              <p>
+                <a href="/board/content/<%= twit.postId %>">
+                  <% if (twit.grade === 2) { %>
+                  <span
+                    style="
+                      font-weight: bold;
+                    " class="board_title"
+                    ><%= twit.title %> <% if (twit.car_num !== null) { %> <i class="fa-solid fa-link fa-fade"></i><% } %> [<%= twit.count %>]</span
+                  >
+                  <% } else { %> <%= twit.title %> <% if (twit.car_num !== null) { %> <i class="fa-solid fa-link fa-fade"></i><% } %> [<%= twit.count %>] <% } %>
+                </a>
+              </p>
+              <p><%= twit.user.name %>(<%= twit.user_id %>)</p>
+              <p>
+                <%= twit.createdAt.getFullYear() %>년 <%=
+                (twit.createdAt.getMonth() + 1) %>월 <%= twit.createdAt.getDate()
+                %>일 (<%= ["일", "월", "화", "수", "목", "금",
+                "토"][twit.createdAt.getDay()] %>) <%= twit.createdAt.getHours()
+                %>시 <%= twit.createdAt.getMinutes() %>분
+              </p>
+              <p>
+                <%= twit.views %>
+              </p>
+            </li>
+            <% }); %>
+        </ul>
+      </div>
+      <div id="board-search">
+        <div class="search-window">
+          <form action="/board/search/" method="get">
+            <div class="search-wrap">
+              <select name="searchType" class="searchType">
+                <option value="title">제목</option>
+                <option value="content">내용</option>
+                <option value="title_content">제목+내용</option>
+                <option value="id">작성자</option>
+              </select>
+              <input
+                id="search"
+                type="text"
+                name="result"
+                placeholder="검색어를 입력하세요."
+              />
+              <button type="submit" class="btn btn/-dark">검색</button>
+            </div>
+          </form>
+        </div>
+        <%- include('./include/pagination.ejs') %>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.onload = () => {
+      setQueryStringParams();
+    }
+    function onPageClick(event, page) {
+      location.href = "/board?page=" + page;
+      console.info(page + " (from options)");
+    }
+    function redirectToNewPost() {
+      location.href = "/board/newpost";
+    }
+    function setQueryStringParams(){
+      if(!location.search){
+        return false;
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchsearchType = urlParams.get('searchType')
+      const searchresult = urlParams.get('result')
+      console.log('dddddddddddddddddddddddddddddddddddddd',searchresult);
+      if(searchsearchType){
+        document.querySelector('.searchType').value=searchsearchType;
+      }
+      if(searchresult){
+        document.querySelector('input[name="result"]').value=searchresult;
+      }
+    }
+  </script>
+</section>
+<%- include('./include/footer.ejs') %>
+

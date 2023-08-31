@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <!-- <link rel="stylesheet" href="/stylesheets/style.css" /> -->
+    <link rel="stylesheet" href="/stylesheets/manager/admin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/e0cbd2fbef.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/manager"
+          ><img src="/images/userlogo.png" alt="CarCarO Logo"
+        /></a>
+      </div>
+      <nav>
+        <ul class="tabs">
+          <li>
+            <a href="/manager/managerUser" class="tab"
+              ><i class="fa-solid fa-users fa-fade"></i> 회원관리</a
+            >
+          </li>
+          <li>
+            <a href="/manager/managerboard" class="tab"
+              ><i class="fa-solid fa-comment fa-fade"></i> 게시판관리</a
+            >
+            <ul class="subtabs">
+              <li><a href="/manager/managerboard">자유게시판관리</a></li>
+              <li><a href="/manager/managerinquiry">1:1문의관리</a></li>
+              <li><a href="/manager/managerFaq">FAQ관리</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/manager/managerCar" class="tab"
+              ><i class="fa-solid fa-car-side fa-fade"></i> 차량관리
+            </a>
+            <ul class="subtabs">
+              <li><a href="/manager/managerCar">판매중인차량관리</a></li>
+              <li>
+                <a href="/manager/managerCar/SaleComp">판매완료차량관리</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/manager/advertise" class="tab"
+              ><i class="fa-solid fa-rectangle-ad fa-fade"></i> 광고관리
+            </a>
+          </li>
+
+          <li class="tab_interval">
+            <a href="/" class="tab"
+              ><i class="fa-solid fa-user-large"></i> 유저페이지로</a
+            >
+          </li>
+          <li>
+            <a href="/auth/logout" class="tab"
+              ><i class="fa-solid fa-right-from-bracket"></i> 로그아웃</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 페이지 컨텐츠를 이곳에 추가합니다 -->
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $(".tabs > li ").mouseover(function () {
+        $(this).find(".subtabs").stop().slideDown(400);
+      });
+      $(".tabs > li").mouseout(function () {
+        $(this).find(".subtabs").stop().slideUp(400);
+      });
+    </script>
+  </body>
+</html>

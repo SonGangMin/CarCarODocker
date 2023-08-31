@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div align="center">
+      <h1>PW</h1>
+      새 비밀번호를 입력해 주세요
+      <form action="/auth/changepw" method="post" id="editform">
+          <input type="text" name="id" value="<%= find.id %>" readonly>
+        <label for=""><span>비밀번호</span>
+          <input id="pw" type="password" name="password" value="" placeholder="비밀번호를 입력해주세요" onkeyup="checkPassword()">    
+          <span id="password_feedback"></span></label><br>
+          <label for=""><span>비밀번호 확인</span>
+          <input id="pw_confirm" type="password" name="password_confirm" placeholder="비밀번호 확인을 입력해주세요" value=""></label>
+          <span id="password_confirm_feedback"></span></label><br>
+          <button type="button" onclick="checkForm()" class="edit_btn">정보 수정</button>
+        <br />
+      </form>
+      <br />
+      <hr />
+      <br />
+      <button onclick="window.close()">닫기</button>
+    </div>
+  </body>
+  <script>
+    const pw_confirm = document.getElementById('pw_confirm')
+    const password_confirm_feedback = document.getElementById('password_confirm_feedback');
+    const edit_form = document.getElementById('editform');
+
+    function checkPassword() {
+      const passwordFeedback = document.getElementById('password_feedback');
+      const pw = document.getElementById('pw');
+      const pwCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
+      if (!pwCheck.test(pw.value)) {
+          passwordFeedback.textContent = '비밀번호는 영문 + 숫자 + 특수문자 조합으로 8~20자리로 설정하셔야 합니다';
+          passwordFeedback.style.color = 'red';
+          return false;
+      } else {
+          passwordFeedback.textContent = '사용 가능한 비밀번호입니다';
+          passwordFeedback.style.color = 'green';
+          return true;
+      }
+    }
+    pw_confirm.addEventListener('input', updateValue);
+    function updateValue(e) {
+
+      console.log(typeof pw, typeof pw_confirm);
+
+      if(pw.value === pw_confirm.value) {
+          password_confirm_feedback.textContent = "비밀번호가 일치 합니다";
+          password_confirm_feedback.style.color = 'green';
+      }else{
+          password_confirm_feedback.textContent = "비밀번호가 일치하지 않습니다";
+          password_confirm_feedback.style.color = 'red';
+      }
+    }
+    function checkForm() {
+      if(pw.value === ''){
+            pw.focus()
+            return false;
+        }
+        if (!checkPassword()) { // 비밀번호 유효성 검사를 수행
+            pw.focus();
+            return false;
+        }
+        if(!pw_confirm.value === ''){
+            alert('비밀번호 확인을 입력해주세요');
+            pw_confirm.focus()
+            return false;
+        }
+        if(pw.value !== pw_confirm.value){
+            alert('비밀번호와 비밀번호 확인이 일치하지 않습니다');
+            pw_confirm.focus()
+            return false;
+        }
+        edit_form.submit();
+      }
+  </script>
+</html>

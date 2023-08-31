@@ -1,0 +1,170 @@
+/* 전체 페이지 스타일 */
+body {
+  background-color: #9bbbd4;
+  color: #191919;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 로고 스타일 */
+.logo {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img {
+  width: 150px;
+  border-radius: 15px;
+}
+
+/* 탭 스타일 */
+.tabs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #fee500;
+  /* border: 3px solid #3a1d1d; */
+  border-radius: 15px;
+}
+
+.tab {
+  display: inline-block;
+  padding: 15px 30px;
+  text-decoration: none;
+  color: #3a1d1d;
+}
+
+.tab a {
+  padding: 15px 30px;
+}
+.tab_interval {
+  margin-left: 10%;
+}
+
+/* .tab:hover {
+  background-color: #666666;
+} */
+.popup {
+  cursor: pointer;
+  font-weight: bold;
+}
+.subtabs {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  padding: 0;
+}
+
+.subtabs li {
+  display: block;
+  background-color: #f1e973;
+}
+
+.subtabs a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #3a1d1d;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.top_tr {
+  background: #556677;
+  color: white;
+}
+.usertable tr:hover {
+  background: #8ba0b6;
+  color: white;
+}
+.subtabs a:hover {
+  background-color: #3a1d1d;
+  color: #fef01b;
+}
+.titletext {
+  color: #fee500;
+  border: 1px solid #fee500;
+  display: inline;
+  padding: 0.8%;
+  font-weight: bold;
+  font-size: 30px;
+  background: #3a1d1d;
+  border-radius: 10px;
+}
+.hrtitle {
+  margin: 1% 0% 1% 0;
+  height: 4px;
+  border: 0;
+  background: #3a1d1d;
+}
+.container1 {
+  display: flex;
+  justify-content: center;
+}
+.contents {
+  width: 80%;
+  display: block;
+  justify-content: center;
+}
+.container5 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.contents5 {
+  display: block;
+  width: 80%;
+  justify-content: center;
+}
+/* .tab:hover + .subtabs {
+  display: block;
+} */
+
+/* 페이지 컨텐츠 스타일 */
+main {
+  margin: 20px;
+}
+
+/* 리스트 스타일(테이블) */
+table {
+  width: 100%;
+  border: 1px solid #3a1d1d;
+  border-spacing: 0;
+}
+table td,
+table th {
+  text-align: center;
+  border-right: 1px solid #3a1d1d;
+  border-bottom: 1px solid #3a1d1d;
+}
+table td:last-child,
+table th:last-child {
+  text-align: center;
+  border-right: none;
+}
+table tr:last-child th,
+table tr:last-child td {
+  border-bottom: none;
+}
+
+.addadver {
+  display: flex;
+
+  justify-content: end;
+  margin: 1% 2% 0% 0%;
+  font-size: 18px;
+}
+.addadver > a {
+  text-decoration: none;
+  color: white;
+  background-color: #556677;
+  border-radius: 10px;
+  padding: 0.5%;
+}
+.addadver > a:hover {
+  background-color: #3a1d1d;
+}

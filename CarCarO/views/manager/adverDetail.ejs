@@ -1,0 +1,14 @@
+<%- include('../include/managerhead.ejs') %>
+    <div class="contents">
+        <h1 class="title"><%= title %></h1>  
+        <% if (Adver) { %>
+        <h3><%= Adver.title %></h3>
+        <img src="<%= Adver.img[0].url %>" alt="">
+        <a href="/manager/advertise/editAdver/<%= Adver.no %>">수정하기</a>
+        <form action="/manager/advertise/delAdver/<%= Adver.no %>" method="post">
+            <button type="submit">삭제</button>
+        </form>
+        <% } %>
+    </div>
+</body>
+</html>

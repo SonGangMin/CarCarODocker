@@ -1,0 +1,224 @@
+.container {
+  border: none;
+}
+
+/* 판매 리스트 */
+.counting {
+  margin-bottom: 10px;
+}
+.viewImg {
+  width: 100%;
+  padding: 0;
+}
+.viewImg li {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.viewImg li .profile {
+  display: flex;
+  width: 80%;
+  cursor: pointer;
+}
+
+.viewImg li > a {
+  width: 100%;
+}
+.viewImg .thumbnail {
+  width: 200px;
+  height: 200px;
+  margin-right: 40px;
+  cursor: pointer;
+  border-radius: 100%;
+}
+.viewImg p {
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.middle_li {
+  cursor: pointer;
+}
+
+.option span {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #191919;
+  font-weight: normal;
+}
+.viewImg .buttonBox {
+  z-index: 999;
+}
+
+.goupload {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.goupBtn {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #fee500;
+  border-radius: 5px;
+  color: #191919;
+}
+
+.pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.pagination li {
+  margin: 0 10px;
+  font-size: 18px;
+}
+.pagination li a {
+  color: #888;
+  font-weight: normal;
+}
+.pagination li span {
+  font-weight: bold;
+  color: #000;
+}
+
+/* 판매등록 */
+.formCar {
+  padding: 20px 20px 100px;
+}
+.formCar label {
+  display: flex;
+  width: 100%;
+  padding: 15px 10px;
+  padding-left: 0;
+  border-top: 2px solid #ddd;
+  border-radius: 2px;
+}
+.formCar label.preview {
+  display: none;
+}
+.formCar label b {
+  display: block;
+  width: 200px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.formCar Label input,
+.formCar label select,
+.formCar label textarea {
+  width: calc(100% - 200px);
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
+.formCar label span {
+  margin-right: 10px;
+}
+.formCar label input[type="radio"] {
+  width: 15px;
+  margin-right: 50px;
+}
+
+.formCar label .row {
+  width: calc(100% - 200px);
+}
+.formCar label .row .preview-images {
+  display: flex;
+  flex-wrap: wrap;
+}
+.formCar label .row .preview-images img {
+  max-width: 200px;
+}
+
+.formCar button {
+  float: right;
+  margin: 10px 10px 0 0;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #fee500;
+  /* border: 2px solid #191919; */
+  border: none;
+  color: #191919;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+/* 판매 상세 */
+.slider .bx-pager {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+}
+.slider .imgBox.active {
+  border: 2px solid #000;
+}
+.slider .bx-pager img {
+  width: 100%;
+  height: 100%;
+}
+
+.saleComplete {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+.saleComplete h1 {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  color: #fff;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+/* 매니저 차량관리 */
+.viewImg li.recommended {
+  border: 1px solid #ff5f5f;
+}
+.srch {
+  display: flex;
+  justify-content: space-between;
+}
+.srch {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Car-btn {
+  background-color: #fee500;
+  color: #191919;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border: none;
+}
+.Car-btn.del-btn {
+  background-color: #191919;
+  color: #fee500;
+}
+.Car-btn:nth-child(2) {
+  background-color: #191919;
+  color: #fee500;
+}
+.Car-btn:hover {
+  cursor: pointer;
+}
+.Car-btn:active {
+  background-color: #dbc501;
+}

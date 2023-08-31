@@ -1,0 +1,57 @@
+<%- include('../include/managerhead.ejs') %>
+<link rel="stylesheet" href="/stylesheets/manager/managerfaq.css" />
+<div class="container5">
+  <div class="contents5">
+    <div class="titletext"><i class="fa-solid fa-comment fa-fade"></i>게시판관리</div>
+    <hr class="hrtitle" />
+    <h2>FAQ</h2>
+    <ul>
+      <% twits.forEach(function(twit) { %> <% if (twit.grade === 2) { %>
+      <li style="color: white; background-color: burlywood; list-style: none">
+        제목: <%= twit.title %> <br /><br />
+        내용: <%= twit.content %> <br /><br />
+        <button class="Faq-btn">
+          <a href="/manager/managerfaq/<%= twit.number %>">수정</a>
+        </button>
+        <form
+          action="/manager/managerfaq/delete/<%= twit.number %>"
+          method="POST"
+        >
+          <input class="Faq-btn" type="submit" value="삭제" />
+        </form>
+        <form
+          action="/manager/managerfaq/downgrade/<%= twit.number %>"
+          method="POST"
+        >
+          <button class="Faq-btn" type="submit">FAQ 내리기</button>
+        </form>
+      </li>
+      <% } else { %>
+      <li style="list-style: none">
+        제목: <%= twit.title %><br /><br />
+        내용: <%= twit.content %><br /><br />
+        <button class="Faq-btn">
+          <a href="/manager/managerfaq/<%= twit.number %>">수정</a>
+        </button>
+        <form
+          action="/manager/managerfaq/delete/<%= twit.number %>"
+          method="POST"
+        >
+          <input class="Faq-btn" type="submit" value="삭제" />
+        </form>
+        <form
+          action="/manager/managerfaq/upgrade/<%= twit.number %>"
+          method="POST"
+        >
+          <button class="Faq-btn" type="submit">FAQ 등록하기</button>
+        </form>
+      </li>
+      <% } %>
+      <hr />
+      <% }); %>
+    </ul>
+  </div>
+</div>
+<button class="update">
+  <a href="/manager/managerfaq/createfaq">글 작성</a>
+</button>

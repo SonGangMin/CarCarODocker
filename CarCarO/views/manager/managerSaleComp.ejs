@@ -1,0 +1,82 @@
+<%- include('../include/managerhead.ejs') %>
+<link rel="stylesheet" href="/stylesheets/car.css">
+<div class="container5">
+    <div class="contents">
+        <div class="titletext"><i class="fa-solid fa-car-side fa-fade"></i>차량관리</div>
+        <hr class="hrtitle">
+        <h2 class="title">판매완료차량</h2>  
+        <h3 class="counting">총 <span><%= totalCount %></span>개</h3>
+        <!-- <form action="/car/hashtag">
+            <input type="text" name="hashtag">
+            <button class="btn">검색</button>
+        </form> -->
+        <ul class="viewImg">
+          <% Cars.forEach(function(carList) { %>
+          <li  data-carnum="<%= carList.carNum %>">
+            <div onclick="location.href='/manager/managerCar/detail/<%= carList.carNum %>'">
+              <% if (carList.picture.length > 0) { %>
+              <img src="<%= carList.picture[0].url %>" alt="" class="thumbnail">
+              <% } %>
+              <div class="middle_li">
+                <p><%= carList.brand %> <%= carList.model %></p>
+                <div class="option">
+                  <span><%= carList.year %></span>
+                  <span><%= carList.mile %>km</span>
+                  <span><%= carList.fuel %></span>
+                  <span><%= carList.hashtag %></span>
+                </div>
+              </div>
+            </div>
+              <div class="buttonBox" style="z-index: 99;">
+                <button  class="Car-btn" id="cancleBtn" value="<%= carList.carNum %>">판매완료취소</button>
+              </div>
+          </li>
+          <% }); %>
+        </ul>
+        
+        <% if (totalPages > 1) { %>
+            <nav>
+              <ul class="pagination">
+                <% if (currentPage == 1) { %>
+                  <li class="disabled"><span>&laquo;</span></li>
+                <% } else { %>
+                  <li><a href="?page=<%= currentPage - 1 %>">&laquo;</a></li>
+                <% } %>
+          
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                  <% if (i == currentPage) { %>
+                    <li class="active"><span><%= i %></span></li>
+                  <% } else { %>
+                    <li><a href="?page=<%= i %>"><%= i %></a></li>
+                  <% } %>
+                <% } %>
+          
+                <% if (currentPage == totalPages) { %>
+                  <li class="disabled"><span>&raquo;</span></li>
+                <% } else { %>
+                  <li><a href="?page=<%= currentPage + 1 %>">&raquo;</a></li>
+                <% } %>
+              </ul>
+            </nav>
+          <% } %>
+    </div>
+</div>
+</body>
+<script>
+  const cancleBtnList = document.querySelectorAll('#cancleBtn');
+  cancleBtnList.forEach((cancleBtn) => {
+    cancleBtn.addEventListener('click', async (e) => {
+      const carNum = e.target.value;
+      const li = e.target.closest('li'); // 선택한 버튼에 가장 가까운 li 요소를 찾습니다.
+      try {
+        const response = await axios.post('/manager/managerCar/saleCancle/' + carNum);
+        if (response.status === 200) {
+          li.remove(); // 선택한 li 요소를 제거합니다.
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  });
+</script>
+</html>

@@ -1,0 +1,109 @@
+body{
+    width: 100%;
+    height: 100%;
+    background-color: #9bbbd4;
+}
+.form{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 40px 20px 60px;
+    background-color: #FEE500;
+    color: #191919;
+    border-radius: 20px;
+}
+.form .title{
+    font-size: 24px;
+    margin-bottom: 50px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #191919;
+    color: #FEE500;
+}
+.form label{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.form span{
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+}
+.form.login label{
+    margin: 0;
+    padding: 0;
+}
+.form.login label:nth-child(3){
+    margin-bottom: 30px;
+}
+
+.form input{
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff !important;
+}
+.form .phone{
+    display: flex;
+    width: 100%;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.phone input:last-child{
+    margin-right: 0;
+}
+
+.form .btn{
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 5px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.sub_btnBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.sub_btnBox span{
+    display: block;
+    font-weight: lighter;
+    width: 15px;
+    margin: 0 -5px;
+    text-align: center;
+}
+.form .sub_btn{
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.join_btn{
+    width: 100%;
+    padding: 10px;
+    background-color: #191919;
+    color: #FEE500;
+    font-weight: bold;
+    border: none;
+}

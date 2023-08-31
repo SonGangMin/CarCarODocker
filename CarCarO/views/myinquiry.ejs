@@ -1,0 +1,52 @@
+<%- include ./include/head.ejs %>
+
+<div class="container">
+    <section class="box">
+        <aside class="mypage_left_area">
+            <a href="/mypage"><div class="left_area_top">나의 CarCarO</div></a>
+            <ul class="left_area_box">
+              <li class="left_area_list">
+                <a href="/mypage/mylikescar/<%= user.id %>">관심차량</a>
+              </li>
+              <li class="left_area_list">
+                <a href="/mypage/myinquiry/<%= user.id %>"> 내 문의</a>
+              </li>
+              <li class="left_area_list">
+                <a href="/mypage/password/<%= user.id %>">회원정보</a>
+              </li>
+            </ul>
+          </aside>
+          <div style="float: left; width: 50%;">
+            <h1 align="center">내 문의</h1><br><br><br>
+            <div align="center">
+                <div>
+                    <ul>
+                        <% twits.forEach(function(twit) { %>
+                        <li>
+                            <div>작성자: <%= twit.user_id %><br><br>
+                            <div class="inquirytitle" style="cursor: pointer;">제목: <%= twit.title %><br><br>
+                            문의 내용<div style="border: solid 1px black; width: 250px;
+                            height: 100px;"><br> <%= twit.content %></div><br>▽<br>
+                            <div class="hidden">
+                                <br><br>답변<br><div style="border: solid 1px black; width: 330px;">
+                                <div><%= twit.answer %></div>추가 문의는 문의하기를 이용해주세요.<br>▶
+                                <button><a href="/faq/inquiry">문의하기</a></button>◀
+                                </div>
+                            </div>    
+                            </div>
+                        </li>
+                        <hr><br><br>
+                        <% }); %>
+                        </ul>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>
+        $(".inquirytitle").click(function(){
+            $(this).find(".hidden").slideToggle()
+        })
+        </script>
+    </section>
+</div>
+<%- include('./include/footer.ejs') %>

@@ -1,0 +1,83 @@
+<%- include('./include/head.ejs')%>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+/>
+<script src="../public/javascript/faq.js"></script>
+<script src="../public/javascript/faqcontent.js"></script>
+<style>
+  .faqsearchpart {
+    margin: 0 auto;
+  }
+</style>
+<div class="container">
+  <div class="contents">
+<div class="faqblock">
+  <div class="faqsearchpart">
+  <form action="faq/faqSearch/:keyword" method="get">
+    질문 검색
+    <input
+      type="text"
+      class="search"
+      name="keyword"
+      placeholder="검색어를 입력해주세요."
+    />
+    <button class="btn">검색</button><br /><br /><br />
+  </form>
+  </div>
+  <h1 class="manyques">자주 묻는 질문</h1>
+  <br />
+  <div class="manytime" align="center">
+    <div>
+      <ul>
+        <% twits.forEach(function(twit) { %> <% if (twit && twit.grade === 2) {
+        %>
+        <li>
+          <div class="questitle">
+            <%= twit.title %><br /><br />
+            <div class="hidden">
+              <div class="answer"><%= twit.content %></div>
+              <br />
+            </div>
+          </div>
+        </li>
+        <hr><br>
+        <% } %> <% }); %>
+      </ul>
+    </div>
+  </div>
+  <button class="inquiry"><a href="/faq/inquiry">문의하기</a></button>
+  <div class="warningblock">
+  <div class="leftblock">
+    <img
+      src="./images/warning_thumnail.png"
+      style="cursor: pointer;"
+      width="250"
+      height="150"
+      onclick="window.open('/faq/leftpopup','warning','scrollbars=yes,width=890,height=600,top=10,left=20');"
+    />
+
+  </div>
+  <div class="rightblock">
+    <img
+      src="./images/warning_thumnail.png"
+      style="cursor: pointer"
+      width="250"
+      height="150"
+      onclick="window.open('/faq/rightpopup','ferrari','scrollbars=yes,width=800,height=840,top=10,left=20');"
+    />
+  </div>
+</div>
+</div>
+</div>
+</div>
+<br /><br /><br />
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+  $(".questitle").click(function () {
+    $(this).find(".hidden").slideToggle();
+  });
+</script>
+<%- include('./include/footer.ejs') %>

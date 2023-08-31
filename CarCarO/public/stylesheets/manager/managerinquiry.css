@@ -1,0 +1,13 @@
+.inquiryliststyle {
+  list-style: none;
+}
+.container5 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.contents5 {
+  display: block;
+  width: 80%;
+  justify-content: center;
+}

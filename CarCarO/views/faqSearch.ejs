@@ -1,0 +1,51 @@
+<%- include('./include/head.ejs') %>
+<script src="../routes/faqSearch.js"></script>
+
+<div class="container">
+    <div class="contents">
+<div class="faqblock">
+    <form action=":keyword" method="get">
+        질문 검색 <input type="text" class="search" name="keyword" placeholder="검색어를 입력해주세요.">
+        <button class="btn">검색</button><br><br><br>
+    </form>
+    
+    <h1 class="manyques">검색 결과</h1><br>
+    <div class="manytime" align="center">
+        <div>
+            <ul>
+                <% results.forEach(function(twit) { %>
+                <li>
+                    <div class="questitle"><%= twit.title %><br><br>
+                        <div class="hidden">
+                            <div class="answer"><%= twit.content %></div><br>
+                        </div>    
+                    </div>
+                </li>
+                <% }); %>
+            </ul>   
+        </div>
+    </div>
+    <button class="inquiry" ><a href="/faq/inquiry">문의하기</a></button>
+</div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+//     const hidden = document.querySelector('.hidden');
+//     const quesTitle = document.querySelector('.questitle');
+
+// quesTitle.addEventListener('click',function(){
+//     if(hidden.style.display = 'none'){
+//         hidden.style.display = 'block'
+//     }
+// });
+
+
+$(".questitle").click(function(){
+    $(this).find(".hidden").slideToggle()
+})
+
+
+</script>
+<%- include('./include/footer.ejs') %>

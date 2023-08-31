@@ -1,0 +1,187 @@
+<%- include('../include/managerhead.ejs') %>
+<link rel="stylesheet" href="/stylesheets/car.css">
+<link rel="stylesheet" href="/stylesheets/cardetail.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<div class="container">
+  <% if(Cars.status===2){ %>
+    <div class="saleComplete">
+      <h1>판매완료</h1>
+    </div>
+  <% } %>
+  <div class="contents">
+    <div class="backbtn_area">
+      <button class="backbtn" onclick="goBack()">뒤로</button>
+    </div>   
+    <div class="titlearea">
+      <% if(Cars.brand === '국산기타' || Cars.brand === '수입기타') { %>
+        <div id="title"><%= Cars.model %></div>
+      <% } else { %>
+        <div id="title"><%= Cars.brand %> <%= Cars.model %></div>
+      <% } %>
+    </div>
+    <div class="hashtags">
+      <% Hashs.forEach(function(hash) { %>
+        <div class="hashtag">#<%= hash.cars_hashtag %></div>
+      <% }); %>
+    </div>
+    <hr class="hrtitle">
+    <div class="viewDetail">
+      <ul class="viewDetail">
+          <li>
+            <div class="slider">
+                <ul class="bxslider">
+                  <% for (let i = 0; i < Cars.picture.length; i++) { %>
+                    <li>
+                      <img src="<%= Cars.picture[i].url %>" alt="" />
+                    </li>
+                  <% } %>
+                </ul>
+                <div id="bx-pager" class="bx-pager">
+                  <% for (let i = 0; i < Cars.picture.length; i++) { %>
+                    <a data-slide-index="<%= i %>" href="" id="imgBox" class="imgBox"><img src="<%= Cars.picture[i].url %>" id="slideImg" /></a>
+                  <% } %>
+                </div>
+            </div>
+          </li>
+      </ul>
+      <hr class="hrcontent">
+      <div class="detailcontents">
+        <div class="detailcontent1 adm">
+          <span class="option-title">차량 주요정보</span>
+          <div class="infozone">
+            <div class="info">
+              <i class="fa-solid fa-calendar"> 연식</i>
+              <div class="detailinfo"><%= Cars.year %></div>
+            </div>
+            <div class="info">
+              <i class="fa-solid fa-car-side"> 주행거리</i>
+              <div class="detailinfo"><%= Cars.mile %>km</div>
+            </div>
+            <div class="info">
+              <i class="fa-solid fa-gas-pump"> 연료방식</i>
+              <div class="detailinfo"><%= Cars.fuel %></div>
+            </div>
+            <div class="info">
+              <i class="fa-solid fa-gear"> 기어방식</i>
+              <div class="detailinfo"><%= Cars.trans %></div>
+            </div>
+            <div class="info">
+              <i class="fa-solid fa-chair"> 인승</i>
+              <div class="detailinfo"><%= Cars.seater %>인승</div>
+            </div>
+          </div><br><br>
+          <span class="option-title">차량 추가옵션</span>
+            <div class="circles">
+                <% const circleClass_disp = Cars.disp === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_roof = Cars.roof === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_nav = Cars.nav === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_key = Cars.key === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_light = Cars.light === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_sensor = Cars.sensor === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_camera = Cars.camera === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_box = Cars.box === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_leather = Cars.leather === '1' ? 'circle1' : 'circle2' %>
+                <% const circleClass_heated = Cars.heated === '1' ? 'circle1' : 'circle2' %>
+                <%= console.log(circleClass_nav); %>
+              <div class="<%= circleClass_disp %>">디스플레이</div>
+              <div class="<%= circleClass_roof %>">썬루프</div>
+              <div class="<%= circleClass_nav %>">네비게이션</div>
+              <div class="<%= circleClass_key %>">스마트키</div>
+              <div class="<%= circleClass_light %>">오토라이트</div>
+              <div class="<%= circleClass_sensor %>">주차센서</div>
+              <div class="<%= circleClass_camera %>">후방카메라</div>
+              <div class="<%= circleClass_box %>">블랙박스</div>
+              <div class="<%= circleClass_leather %>">가죽시트</div>
+              <div class="<%= circleClass_heated %>">열선시트</div>
+            </div>
+            <span class="option-title">차량 부가설명</span>
+            <div class="etc">
+              <%= Cars.etc %>
+            </div>
+      </div>
+    </div> 
+  </div>
+</div>
+<div class="detailcontent2 adm">
+  <div class="pricezone">
+    <span class="option-title">판매가격</span>
+    <span class="price">
+      <% var price = Cars.price;
+        var unit = '';
+        if (price >= 10000) {
+          price = Math.floor(price / 10000);
+          unit = '억';
+        } else if (price >= 1) {
+          price = Math.floor(price / 1);
+          unit = '만';
+        } %>
+   <%= price.toLocaleString() + unit + '원' %>
+   </span>
+  </div>
+  <div class="etczone 1">
+    <i class="fa-solid fa-user"> <%= Users.name %>(<%= Cars.user_id %>)</i>
+    <i class="fa-solid fa-location-dot"> <%= Cars.area %></i>
+    <i class="fa-solid fa-heart"> <%= Cars.likes_count %></i>
+  </div>
+  <div class="etczone 2">
+    <i class="fa-solid fa-phone"> <% var tel = Users.tel;
+      var formattedTel = tel.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+   %>
+   <%= formattedTel %>
+   </i>
+   <i class="fa-solid fa-phone"><% var tel = Cars.tel;
+    var formattedTel = tel.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+ %>
+ <%= formattedTel %></i>
+  </div>
+  <div class="pricezone">
+    <span class="option-title">차 번호</span>
+    <span class="carnum"><%= Cars.carNum %></span>
+  </div>
+  <div class="btn_area">
+    <a href="/manager/managerCar"><button class="Car-btn">목록으로</button></a><br>
+    <a href="/car/caredit/<%= Cars.carNum %>"><button class="Car-btn">수정</button></a>
+    <form action="/car/delete/<%= Cars.carNum %>" method="POST">
+      <input class="Car-btn" type="submit" value="삭제" />
+    </form>
+    <form action="/manager/managerCar/saleComp/<%= Cars.carNum %>" method="post">
+      <button class="Car-btn" type="submit" id="saleComp">판매완료등록</button>
+    </form>  
+  </div>
+</div>
+<script>
+    // 슬라이드용 js
+    $(document).ready(function() {
+      $('.bxslider').bxSlider({
+        pagerCustom: '#bx-pager',
+        auto: false,
+        pause: 3000 // 3초마다 슬라이드 이동
+      });
+    });
+
+    const imgBox = document.querySelectorAll('.imgBox');
+    const slideImg = document.querySelectorAll('#bx-pager img');
+    const n = slideImg.length;
+
+    imgBox.forEach((img) => {
+        img.style.cssText += `max-width: 150px; width: calc(100% / ${n}); height: 100px; display: block; padding: 0 10px;` ;
+    });
+    
+    // 사이드 스크롤메뉴
+    $(document).ready(function(){
+      var currentPosition = parseInt($(".detailcontent2").css("top"));
+      $(window).scroll(function() {
+        var position = $(window).scrollTop(); 
+        $(".detailcontent2").stop().animate({"top":position+currentPosition+"px"},1000);
+      });
+    });
+    function goBack() {
+      window.history.back();
+    }
+</script>
+
+</body>
+</html>

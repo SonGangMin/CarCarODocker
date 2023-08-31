@@ -1,0 +1,150 @@
+<%- include ./include/head.ejs %>
+<div class="container">
+  <section class="box">
+    <aside class="mypage_left_area">
+      <a href="/mypage"><div class="left_area_top">나의 CarCarO</div></a>
+      <ul class="left_area_box">
+        <li class="left_area_list">
+          <a href="/mypage/mylikescar/<%= user.id %>">관심차량</a>
+        </li>
+        <li class="left_area_list">
+          <a href="/mypage/myinquiry/<%= user.id %>"> 내 문의</a>
+        </li>
+        <li class="left_area_list">
+          <a href="/mypage/password/<%= user.id %>">회원정보</a>
+        </li>
+      </ul>
+    </aside>
+    <div class="mypage_right_area">
+      <div class="mypage_profile">
+        <div class="mypage_profile1">
+          <p style="font-size: 40px; font-weight: bold"><%= user.name %> 님</p>
+
+          <p>
+            <a
+              href="mypage/password/<%= user.id %>"
+              style="text-decoration: underline"
+              >정보 수정</a
+            >
+          </p>
+        </div>
+        <div class="mypage_profile2">
+          <div>
+            <div class="count">관심차량</div>
+            <div class="countlink">
+              <a href="/mypage/mylikescar/<%= user.id %>"
+                ><%= mylikescount %></a
+              >
+            </div>
+          </div>
+          <div>
+            <div class="count">판매중인 차량</div>
+            <div class="countlink">
+              <a href="/car/carsale"><%= mycarscount %></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <div class="mypage_likes">
+        <div class="mypage_right_top">
+          <div>
+            <span style="font-size: 20px; font-weight: bold" ;
+              >내 관심차량</span
+            >
+          </div>
+          <div><a href="/mypage/mylikescar/<%= user.id %>">+ 더보기</a></div>
+        </div>
+        <br />
+        <div>
+          <ul class="viewImg">
+            <% twits.forEach(function(twit) { %>
+            <li
+              onclick="location.href='/car/detail/<%= twit.car_num_car.num %>'"
+            >
+              <% if (twit.car_num_car.picture.length > 0) { %>
+              <img
+                src="<%= twit.car_num_car.picture[0].url %>"
+                alt=""
+                class="thumbnail"
+              />
+              <% } %>
+              <div class="middle_li">
+                <p>
+                  <%= twit.car_num_car.brand %> <%= twit.car_num_car.model %>
+                </p>
+                <div class="option">
+                  <span><%= twit.car_num_car.year %></span>
+                  <span><%= twit.car_num_car.mile %>km</span>
+                  <span><%= twit.car_num_car.fuel %></span>
+                </div>
+              </div>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <div class="mypage_inquiry">
+        <div class="mypage_right_top">
+          <span style="font-size: 20px; font-weight: bold">내 문의</span>
+          <div><a href="/mypage/myinquiry/<%= user.id %>">+ 더보기</a></div>
+        </div>
+        <br />
+        <div class="mypage_right_bottom">
+          <ul>
+            <% myinq.forEach(function(inq) { %>
+            <li>
+                <div class="inquirytitle" style="cursor: pointer;">
+                  <div class="eachinquiry">
+                    <span>
+                      <% if (inq.answer !== null) { %>
+                        <div style="font-weight: bold; color: green;">답변완료</div>
+                      <% } else { %> 
+                        <div class="check">답변 중</div>
+                      <% } %>
+                    </span>
+                    <span style="font-weight: bold;"><%= inq.title %></span>
+                    <span>문의 내용: <%= inq.content %> </span>
+                    <span>
+                      <%= inq.createdAt.getFullYear() %>년
+                      <%= (inq.createdAt.getMonth() + 1) %>월
+                      <%= inq.createdAt.getDate() %>일
+                      (<%= ["일", "월", "화", "수", "목", "금", "토"][inq.createdAt.getDay()] %>)
+                    </span>
+                  </div><br>
+                  <div class="next">▽</div>
+                  <div class="hidden">
+                    문의답변<br>
+                    <div style="border: solid 1px black; width: 330px;">
+                      <% if (inq.answer !== null) { %>
+                        <div><%= inq.answer %></div>
+                      <% } else { %>
+                        <div>답변이 준비중입니다.</div>
+                      <% } %>
+                    </div><br><br>
+                    <div>
+                      추가 문의는 문의하기를 이용해주세요.<br>
+                      ▶<button><a href="/faq/inquiry">문의하기</a></button>◀
+                    </div>
+                  </div>    
+                </div>
+            </li>
+            <hr>
+            <% }); %>
+            </ul>
+      </div>
+      <br />
+      <hr />
+    </div>
+  </section>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+$(".inquirytitle").click(function(){
+    $(this).find(".hidden").slideToggle()
+})
+</script>
+<%- include('./include/footer.ejs') %>

@@ -1,0 +1,146 @@
+<%- include ./include/head.ejs %>
+
+<style>
+  /* .searchbox {
+    border: solid 1px black;
+    padding: 30px;
+} */
+  .select1 {
+    margin: 0;
+    padding: 20px;
+    align-items: center;
+    size: 150px;
+  }
+  .search {
+    margin: 0;
+    padding-top: 18px;
+    padding-bottom: 40px;
+    align-items: center;
+  }
+  .thumbnail {
+    width: 100%;
+    height: 150px;
+  }
+  .listbox {
+    border: 1px solid black;
+    /* background-color: red; */
+    width: 100%;
+    /* margin: 0 5%; */
+  }
+  /* li {
+    display: inline-block;
+  } */
+  .bigbox {
+    /* border: solid 1px black; */
+    position: relative;
+    width: 100%;
+    display: block;
+    margin: 0%;
+    /* left: 15%; */
+  }
+  .statistics {
+    text-align: right;
+    width: 100%;
+  }
+  .searchbox {
+    width: 100%;
+  }
+  .bigbox ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .bigbox ul li {
+    width: 25%;
+    padding: 10px 10px;
+    text-align: center;
+  }
+  .bigbox h1 {
+    text-align: center;
+  }
+
+  .text-box {
+    margin-bottom: 10px;
+    margin-top: -20px;
+  }
+  .hash {
+    width: 25%;
+    display: flex;
+    display: inline;
+    margin: 5%;
+  }
+  .like {
+    position: relative;
+    right: -35%;
+    top: -40px;
+    /* border: solid 1px black; */
+  }
+  #highlight {
+    background-color: lightcoral;
+  }
+  .check {
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
+  .unit {
+    position: absolute;
+    right: 0;
+  }
+</style>
+
+<div class="container">
+  <section class="box">
+    <aside class="mypage_left_area">
+      <a href="/mypage"><div class="left_area_top">나의 CarCarO</div></a>
+      <ul class="left_area_box">
+        <li class="left_area_list">
+          <a href="/mypage/mylikescar/<%= user.id %>">관심차량</a>
+        </li>
+        <li class="left_area_list">
+          <a href="/mypage/myinquiry/<%= user.id %>"> 내 문의</a>
+        </li>
+        <li class="left_area_list">
+          <a href="/mypage/password/<%= user.id %>">회원정보</a>
+        </li>
+      </ul>
+    </aside>
+    <div class="container">
+      <div class="contents">
+    <div class="bigbox bigbox2" id="list">
+      <h1>관심차량</h1>
+      <br />
+      <div class="statistics">
+      </div>
+      <ul>
+        <% twits.forEach(function(car) { %> <% if(isOwner === car.userid) %>
+        <li>
+          <a href="/car/detail/<%= car.car_num_car.num %>">
+            <div
+              class="reccarlist"
+              id="<%= isMine === car.user_id ? 'highlight' : '' %>"
+            >
+              <% if (car.car_num_car.picture.length > 0) { %>
+                <img src="<%= car.car_num_car.picture[0].url %>" alt="" class="thumbnail">
+                <% } %>
+              <div class="carProfile">
+                <div> <%= car.car_num_car.brand %> <%= car.car_num_car.model %> </div>
+                
+                <div class="carOption">
+                  <span><%= car.car_num_car.year %>년식</span>
+                  <span><%= car.car_num_car.mile %>km</span><br>
+                  <span><%= car.car_num_car.fuel %></span>
+                  <span><%= car.car_num_car.area %></span>
+                  <h5><%= car.car_num_car.price %><p>만원</p></h5>
+              </div>
+            
+            </div>
+          </a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+    </div>
+    </div>
+    
+  </section>
+</div>
+<%- include('./include/footer.ejs') %>

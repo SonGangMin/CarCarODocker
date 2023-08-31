@@ -1,0 +1,172 @@
+<%- include('../include/managerhead.ejs') %>
+<style>
+    .Grade-btn {
+    background-color:#FEE500;
+    color: #000000;
+    border-radius:3px;
+    }
+
+    .Grade-btn:hover {
+    cursor: pointer;
+    }
+
+    .Grade-btn:active {
+    background-color: #dbc501;
+    }
+
+</style>
+<div class="container1">
+  <div class="contents">
+    <div class="titletext"><i class="fa-solid fa-users fa-fade"></i> 회원관리</div>
+    <hr class="hrtitle">
+    <table class="usertable">
+        <tr class="top_tr">
+            <th>No</th>
+            <th>이름</th>
+            <th>아이디</th>
+            <th>이메일</th>
+            <th>전화번호</th>
+            <th>나이</th>
+            <th>차량판매대수</th>
+            <th>가입일</th>
+            <% if(user.grade === 3) { %>
+                <th>회원등급</th>
+                <th>등급수정</th>
+                <th>회원탈퇴</th>
+                <th>회원수정</th>
+            <% } %>
+        </tr>
+        <% Users.forEach(function(users) { %>
+            <% if(user.id === users.id || user.grade === 3) { %>
+              <tr>
+                <td><%= users.no %></td>
+                <td><%= users.name %></td>
+                <td><%= users.id %></td>
+                <td><%= users.email %></td>
+                <td><%= users.tel %></td>
+                <td><%= users.birth %></td>
+                <td>
+                    <div class='popup' onclick="usercarPopup('<%= users.id %>')">
+                      <%= users.cars.length %>
+                    </div>
+                </td>
+                <td><%= users.createdAt.getFullYear() %>년 <%= (users.createdAt.getMonth()
+                    + 1) %>월 <%= users.createdAt.getDate() %>일 (<%= ["일", "월", "화",
+                    "수", "목", "금", "토"][users.createdAt.getDay()] %>)</td>
+                    <% if(user.grade === 3) { %>
+                    <td><% if(users.grade === 3) { %> <span style="font-weight: bold; color: red;">슈퍼관리자</span> <% } else if(users.grade === 2) { %> <span style="font-weight: bold;">관리자</span> <% } else { %> 일반유저 <% } %></td>
+                    <td>
+                        <% if (users.grade === 1) { %>
+                            <form id="upgradeForm<%= users.id %>" action="/manager/managerUser/edit/<%= users.id %>" method="post">
+                              <button onclick="return confirmUpgrade('<%= users.id %>')">등급승급</button>
+                            </form>
+                          <% } else if (users.grade === 2) { %>
+                            <form id="downgradeForm<%= users.id %>" action="/manager/managerUser/edit/<%= users.id %>" method="post">
+                              <button onclick="return confirmDowngrade('<%= users.id %>')">등급강등</button>
+                            </form>
+                          <% } %>
+                    </td>
+                    <td>
+                        <% if (users.grade === 1 || users.grade === 2) { %>
+                            <form id="deleteForm<%= users.id %>" action="/manager/managerUser/delete/<%= users.id %>" method="post">
+                              <button onclick="return confirmDelete('<%= users.id %>')">탈퇴</button>
+                            </form>
+                          <% } %>
+                    </td>
+                    <td>
+                      <% if (users.grade === 1 || users.grade === 2) { %>
+                        <button onclick="userinfoPopup('<%= users.no %>')">
+                          정보수정
+                        </butto>
+                      <% } %>
+                    </td>
+                <% } %>
+            </tr>
+            <% } %>
+          <% }); %>
+    </table>
+  </div>
+  <script>
+  function confirmUpgrade(userId) {
+    if (confirm('등급을 승급하시겠습니까?')) {
+      const form = document.getElementById(`upgradeForm${userId}`);
+      form.submit();
+    }
+    return false; // 클릭 이벤트 전파 중지
+  }
+
+  function confirmDowngrade(userId) {
+    if (confirm('등급을 강등하시겠습니까?')) {
+      const form = document.getElementById(`downgradeForm${userId}`);
+      form.submit();
+    }
+    return false; // 클릭 이벤트 전파 중지
+  }
+  function confirmDelete(userId) {
+    if (confirm('정말로 탈퇴하시겠습니까?')) {
+      const form = document.getElementById(`deleteForm${userId}`);
+      form.submit();
+    }
+    return false; // 클릭 이벤트 전파 중지
+  }
+  function onPageClick(event, page) {
+    location.href = "/manager/managerUser?page=" + page;
+    console.info(page + " (from options)");
+  }
+  let popupWidth = 800;
+  let popupHeight = 800;
+
+  function getCurrentScreenCoordinates() {
+    const activeWindow = window.screen;
+    return {
+      left: activeWindow.availLeft,
+      top: activeWindow.availTop,
+      width: activeWindow.availWidth,
+      height: activeWindow.availHeight,
+    };
+  }
+
+  function calculateCenterCoordinates(
+      screenCoordinates,
+      popupWidth,
+      popupHeight
+    ) {
+      const popupX =
+        screenCoordinates.left + (screenCoordinates.width - popupWidth) / 2;
+      const popupY =
+        screenCoordinates.top + (screenCoordinates.height - popupHeight) / 2;
+      return { x: popupX, y: popupY };
+    }
+
+  function usercarPopup(userId) {
+    const screenCoordinates = getCurrentScreenCoordinates();
+    const centerCoordinates = calculateCenterCoordinates(
+      screenCoordinates,
+      popupWidth,
+      popupHeight
+    );
+    window.open(
+      `/manager/managerUser/${userId}`,
+      "회원",
+      `height=${popupHeight}, width=${popupWidth}, left=${centerCoordinates.x}, top=${centerCoordinates.y}, menubar=no, status=no, toolbar=no`
+    );
+  }
+  function userinfoPopup(userNo) {
+    const screenCoordinates = getCurrentScreenCoordinates();
+    const centerCoordinates = calculateCenterCoordinates(
+      screenCoordinates,
+      popupWidth,
+      popupHeight
+    );
+    window.open(
+      `/manager/managerUser/editinfo/${userNo}`,
+      "회원",
+      `height=${popupHeight}, width=${popupWidth}, left=${centerCoordinates.x}, top=${centerCoordinates.y}, menubar=no, status=no, toolbar=no`
+    );
+  }
+</script>
+
+</div>
+<%- include('../include/pagination.ejs') %>
+</body>
+</html>

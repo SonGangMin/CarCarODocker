@@ -1,0 +1,51 @@
+<%- include('../include/managerhead.ejs') %>
+<div class="container5">
+  <div class="contents">
+    <div class="titletext"><i class="fa-solid fa-rectangle-ad fa-fade"></i>광고관리</div>
+    <hr class="hrtitle">
+    <table class="usertable">
+        <tr class="top_tr">
+            <th>번호</th>
+            <th>제목</th>
+            <th>링크</th>
+            <th>등록일자</th>
+        </tr>
+        <% Adver.forEach(function(advers) { %>
+        <tr onclick="location.href='/manager/advertise/adverDetail/<%= advers.no %>'" style="cursor: pointer;">
+            <td><a href=""><%= advers.no %></td>
+            <td><%= advers.title %></td>
+            <td><%= advers.href %></td>
+            <td><%= advers.createdAt %></td>
+        </tr>
+        <% }); %>
+    </table>
+    <% if (totalPages > 1) { %>
+        <nav>
+          <ul class="pagination">
+            <% if (currentPage == 1) { %>
+              <li class="disabled"><span>&laquo;</span></li>
+            <% } else { %>
+              <li><a href="?page=<%= currentPage - 1 %>">&laquo;</a></li>
+            <% } %>
+      
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <% if (i == currentPage) { %>
+                <li class="active"><span><%= i %></span></li>
+              <% } else { %>
+                <li><a href="?page=<%= i %>"><%= i %></a></li>
+              <% } %>
+            <% } %>
+      
+            <% if (currentPage == totalPages) { %>
+              <li class="disabled"><span>&raquo;</span></li>
+            <% } else { %>
+              <li><a href="?page=<%= currentPage + 1 %>">&raquo;</a></li>
+            <% } %>
+          </ul>
+        </nav>
+      <% } %>
+      <div class="addadver"><a href="/manager/advertise/addAdvertise">광고등록</a></div>
+  </div>
+</div>
+</body>
+</html>
