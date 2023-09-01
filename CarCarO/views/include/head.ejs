@@ -9,27 +9,32 @@
     <link rel="stylesheet" href="/stylesheets/car.css" />
     <link rel="stylesheet" href="/stylesheets/index.css" />
 
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"
+    />
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script src="https://kit.fontawesome.com/a045861cb2.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/a045861cb2.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header id="hd">
       <div class="util">
-        <% if (user && user.grade === 2 || user && user.grade === 3) { %>
-        <a href="/manager">관리자 페이지</a>
-        <% } %> <% if (!user || !user.id) {%>
+        <div>관리자 아이디/비밀번호: admin</div>
+        <div>
+          <% if (user && user.grade === 2 || user && user.grade === 3) { %>
+          <a href="/manager">관리자 페이지</a>
+          <% } %> <% if (!user || !user.id) {%>
+          <a href="/login">로그인</a>
+          <a href="/join">회원가입</a>
+          <!-- <a href="/mypage">마이페이지</a> -->
 
-        <a href="/login">로그인</a>
-        <a href="/join">회원가입</a>
-        <!-- <a href="/mypage">마이페이지</a> -->
-      
-        <%} else {%>
+          <%} else {%>
           <b><%= user.name %></b>
           <% if(user.provider === 'local'){ %>
           <a href="/auth/logout">로그아웃</a>
@@ -40,7 +45,8 @@
           >
           <% } %>
           <a href="/mypage">마이페이지</a>
-        <% } %>
+          <% } %>
+        </div>
       </div>
       <div class="hd_menu">
         <div class="hd_lt">
@@ -48,10 +54,14 @@
             <a href="/"><img src="/images/userlogo.png" alt="" /></a>
           </h1>
           <ul class="nav">
-            <li class="<%= (req.originalUrl === '/car/carfind') ? 'active' : '' %>">
+            <li
+              class="<%= (req.originalUrl === '/car/carfind') ? 'active' : '' %>"
+            >
               <a href="/car/carfind" class="">내차 찾기</a>
             </li>
-            <li class="<%= (req.originalUrl === '/car/carsale') ? 'active' : '' %>">
+            <li
+              class="<%= (req.originalUrl === '/car/carsale') ? 'active' : '' %>"
+            >
               <a href="/car/carsale">내차 팔기</a>
             </li>
             <li class="<%= (req.originalUrl === '/board') ? 'active' : '' %>">
@@ -65,10 +75,16 @@
         <div class="hd_rt">
           <div class="hashtagsearch">
             <form action="/hashtagsearch/" method="get">
-                <input class="hashtagsearchbox" name="hashtag" placeholder="해쉬태그 검색 ex) #제네시스 #G80">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <input
+                class="hashtagsearchbox"
+                name="hashtag"
+                placeholder="해쉬태그 검색 ex) #제네시스 #G80"
+              />
+              <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
             </form>
-        </div>
+          </div>
           <a href="javascript:void(0);" id="hambug">
             <span></span>
             <span></span>
@@ -83,8 +99,14 @@
         <li>
           <div class="hashtagsearch">
             <form action="/hashtagsearch/" method="get">
-                <input class="hashtagsearchbox" name="hashtag" placeholder="해쉬태그 검색 ex) #제네시스 #G80">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <input
+                class="hashtagsearchbox"
+                name="hashtag"
+                placeholder="해쉬태그 검색 ex) #제네시스 #G80"
+              />
+              <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
             </form>
           </div>
         </li>
@@ -104,13 +126,13 @@
     </div>
   </body>
   <script>
-    const hambug = document.getElementById('hambug');
-    const slide_menu = document.getElementById('slide_menu');
-    const body = document.querySelector('body');
-    hambug.addEventListener('click', () => {
-      hambug.classList.toggle('active');
-      slide_menu.classList.toggle('active');
-      body.classList.toggle('noscroll');
+    const hambug = document.getElementById("hambug");
+    const slide_menu = document.getElementById("slide_menu");
+    const body = document.querySelector("body");
+    hambug.addEventListener("click", () => {
+      hambug.classList.toggle("active");
+      slide_menu.classList.toggle("active");
+      body.classList.toggle("noscroll");
     });
   </script>
 </html>
